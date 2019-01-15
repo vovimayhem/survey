@@ -27,7 +27,11 @@
 								<td>{{$result->question2}}</td>
 								<td>{{$result->question3}}</td>
 								<td>{{$result->question4}}</td>
-								<td>{{$result->question5}}</td>
+								@if($result->question5 == true)
+								<td>true</td>
+								@else
+								<td>false</td>
+								@endif
 								<td>{{$result->feedback}}</td>
 							</tr>
 							@endforeach

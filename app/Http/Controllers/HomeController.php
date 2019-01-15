@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Result;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreSurveyResponse;
 
 class HomeController extends Controller
@@ -25,14 +24,15 @@ class HomeController extends Controller
 
     public function store(StoreSurveyResponse $request)
     {
+   
        $validated = $request->validated();
 
        $result = new Result();
        $result->case_number = rand(10000, 60000);
-       $result->question1 = $request->input('rating1');
-       $result->question2 = $request->input('rating2');
-       $result->question3 = $request->input('rating3');
-       $result->question4 = $request->input('rating4');
+       $result->question1 = $request->get('rating1');
+       $result->question2 = $request->get('rating2');
+       $result->question3 = $request->get('rating3');
+       $result->question4 = $request->get('rating4');
 
        $quality = $request->get('quality');
 
@@ -42,8 +42,8 @@ class HomeController extends Controller
         $result->question5 = false;
        }
 
-       $result->question6 = $request->only('texthere');
-       $result->save;
+       $result->feedback = $request->get('texthere');
+       $result->save();
 
        return redirect()->route('survey');
    }
