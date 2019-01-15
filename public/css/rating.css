@@ -1,0 +1,122 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+fieldset, label { margin: 0; padding: 0; }
+
+/****** Style Star Rating Widget *****/
+
+.rating {border: none; }
+.rating > input { display: none; } 
+.rating > label {position: relative; margin-right: 20px; color: #ddd; float: right; }
+
+.rating > label:before { 
+  margin: 5px;
+  font-size: 3em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+
+
+.rating > .half:after {transform: scale(.5);}
+.rating > .half:after { 
+  font-family: FontAwesome;
+  right: 20px;
+  top: 5px;
+  font-size: 4.24em;
+  /*content: "\f089"; */
+  content: "\f005";
+  position: absolute;
+  color: red;
+  opacity: .1;
+  transition: all 150ms ease;
+  transform: scale(1.6)
+}
+
+
+.rating > label span {
+  position: absolute;
+  left: 0;
+  bottom: -15px;
+  white-space: nowrap;
+  font-size: 14px;
+  color: #DDDDDD !important;
+}
+.rating > label .nogreat{
+  left: 100%;
+  -webkit-transform: translateX(-75%);
+  -ms-transform: translateX(-75%);
+  -o-transform: translateX(-75%);
+  transform: translateX(-75%); 
+}
+.rating > label .great{left: 5%; }
+
+.rating-left {float: left;}
+.rating-right {float: right;}
+
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+
+@media screen and (max-width: 800px) {
+ .rating > label:before {font-size: 2.4rem; }
+ .radio label {font-size: 1.3rem; }
+}
+
+@media screen and (max-width: 700px) {
+  .rating > label:before {font-size: 2rem; }
+   .radio label {font-size: 1.24rem; }
+}
+
+@media screen and (max-width: 667px) {  
+  .rating > label {
+    margin-right: 12px;
+  }
+}
+@media screen and (max-width: 640px) {  
+  .rating > label:before {
+      font-size: 1.6rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .rating > label:before {
+      font-size: 2.25rem;
+  }
+  .rating > label {
+    margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 436px) { 
+  .radio > label ~ label {
+    margin-left: 0;
+  }
+  .rating > label {
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 436px) { 
+  .rating > label:before {
+      font-size: 1.8rem;
+  }
+  .rating > label span  {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 375px) { 
+  .rating > label:before {
+      /*font-size: 1.6rem;*/
+  }
+}
