@@ -16,3 +16,8 @@ Auth::routes();
 Route::get('/survey', 'HomeController@index')->name('survey');
 Route::post('/survey/submit', 'HomeController@store')->name('submit');
 Route::resource('/', 'ResultController', ['only' => ['index', 'show']]);
+Route::get('/result/show/{id}', 'ResultController@show');
+
+Route::get('chemo', function() {
+
+});

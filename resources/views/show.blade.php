@@ -1,31 +1,32 @@
-@extends('layouts.default')
+@extends('layouts.app')
 
-@section('content') 
-<div class="row">
-	@if ($errors->any())
-	<div class="alert alert-danger">
-		<ul>
-			@foreach ($errors->all() as $error)
-			<li>{{ $error }}</li>
-			@endforeach
-		</ul>
-	</div>
-	@endif
-	
-	<form action="{{ url('management/locations') }}" method="POST" enctype="multipart/form-data">
-		@csrf
-		<div class="form-group">
-			<label class="form-label" for="field-1">Name</label>
-			<span class="desc"></span>
-			<div class="controls">
-				<input type="text" class="form-control" name="name">
+@section('content')
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header">Information</div>
+				<div class="card-body">
+					<center> 
+						<h2>Case # {{ $result->case_number }}</h2> 
+						<p>Value response 1 - {{ $result->question1 }}</p> 
+						<p>Value response 2 - {{ $result->question2 }}</p> 
+						<p>Value response 3 - {{ $result->question3 }}</p> 
+						<p>Value response 4 - {{ $result->question4 }}</p> 
+
+						@if($result->question5 == true)
+						<p>Value response 5 - True</p> 
+						@else
+						<p>Value response 5 - False</p> 
+						@endif
+
+						<p>Feedback - {{ $result->feedback }}</p> 
+
+						<a href="{{ url('/') }}" class="btn btn-primary">Back</a>
+					</center>
+				</div>
 			</div>
 		</div>
-
-		<div class="text-right">
-			<button type="submit" class="btn btn-success">Save</button>
-			<a href="{{ route('management.locations.index') }}" class="btn btn-danger">Cancel</a>
-		</div>
-	</form>
+	</div>
 </div>
 @endsection

@@ -22,7 +22,7 @@
 						<tbody>
 							@foreach($results as $result)
 							<tr>
-								<td><a href="{{ url('/show', $result->case_number)}}"> {{ $result->case_number }}</a></td>
+								<td><a href="{{ url('/result/show', $result->id)}}"> {{ $result->case_number }}</a></td>
 								<td>{{$result->question1}}</td>
 								<td>{{$result->question2}}</td>
 								<td>{{$result->question3}}</td>

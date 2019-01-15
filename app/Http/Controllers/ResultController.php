@@ -34,8 +34,9 @@ class ResultController extends Controller
      * @param  \App\Result  $result
      * @return \Illuminate\Http\Response
      */
-    public function show(Result $result)
+    public function show($id)
     {
-        //
+        $result = Result::find($id);
+        return view('show', compact('result'));
     }
 }
