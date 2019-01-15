@@ -11,4 +11,8 @@
 |
 */
 
-Route::resource('/', 'HomeController', [ 'only' => ['index', 'store']] );
+
+Auth::routes();
+Route::get('/survey', 'HomeController@index')->name('survey');
+Route::post('/survey/submit', 'HomeController@store')->name('submit');
+Route::resource('/admin/dashboard', 'ResultController@index');

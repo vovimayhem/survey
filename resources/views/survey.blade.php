@@ -3,9 +3,9 @@ define("QUESTIONS", array(
     'question1' => "1. On a scale of 1 to 5 stars, how would you rate your final resolution with the IRS and/or State?",
     'question2' => "2. On a scale of 1 to 5 stars, how would you rate your overall customer service expecience with Community Tax?",
     'question3' => "3. On a scale of 1 to 5 stars, how would you rate the service received from your licensed  tax practitioner?",
-    'question4' => "4. On a scale of 1-5 stars, how wolud you rate the service received from your tax preparer responsible for preparing your tax returns?",
+    'question4' => "4. On a scale of 1 to 5 stars, how wolud you rate the service received from your tax preparer responsible for preparing your tax returns?",
     'question5' => "5. Will you be returning to Community Tax to prepare your anual tax returns?",
-    'question6' => "Please provide any additional feedback that you wish to sahre with Community Tax"
+    'question6' => "Please provide any additional feedback that you wish to share with Community Tax"
 ))
 ?>
 <!doctype html>
@@ -18,12 +18,11 @@ define("QUESTIONS", array(
     <!-- <link rel="stylesheet" type="text/css" href="css/starability-all.min.css"> -->
     <link href="https://fonts.googleapis.com/css?family=Basic|Open+Sans" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/rating.css">
-    
 </head>
 <body>
     <div class="main-survey" style="position: relative;">
         <div class="content-survey">
-            <form id="form-survey" action="{{ url('home') }}" method="POST">
+            <form id="form-survey" action="{{ route('submit') }}" method="POST">
                 @csrf
 
                 <div class="bloque-1 relative flex justify-center">
@@ -34,28 +33,6 @@ define("QUESTIONS", array(
                                 <h2><?= QUESTIONS["question1"]; ?></h2>
                             </div>
                             <div class="ranking-star">
-                                <!-- <fieldset class="starability-grow">
-
-                                    <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
-
-                                    <input type="radio" id="rate1" name="rating" value="1" />
-                                    <label for="rate1">1 star.</label>
-
-                                    <input type="radio" id="rate2" name="rating" value="2" />
-                                    <label for="rate2">2 stars.</label>
-
-                                    <input type="radio" id="rate3" name="rating" value="3" />
-                                    <label for="rate3">3 stars.</label>
-
-                                    <input type="radio" id="rate4" name="rating" value="4" />
-                                    <label for="rate4">4 stars.</label>
-
-                                    <input type="radio" id="rate5" name="rating" value="5" />
-                                    <label for="rate5">5 stars.</label>
-
-                                    <span class="starability-focus-ring"></span>
-                                </fieldset> -->
-
                                 <fieldset class="rating rating-left">
 
                                     <input type="radio" id="star5" name="rating1" value="5" /><label for="star5" class="margin-right-none"><span class="great">GREAT</span></label>
@@ -157,7 +134,7 @@ define("QUESTIONS", array(
                                 <input type="radio" value="Absolutely" name="quality" id="Absolutely"> <span>Absolutely</span>
                             </label>
                             <label for="NotAbsolutely">
-                                <input type="radio" value="NotAbsolutely" name="quality" id="NotAbsolutely"> <span>Onfortunately Not</span>
+                                <input type="radio" value="NotAbsolutely" name="quality" id="NotAbsolutely"> <span>Unfortunately Not</span>
                             </label>
                         </div>
                     </div>
@@ -184,6 +161,7 @@ define("QUESTIONS", array(
             <span>&#169; 2108 Web design by CU Creative CO.</span>
         </footer>
     </div>
+
     <script src="js/survey.js"></script>
 </body>
 </html>
