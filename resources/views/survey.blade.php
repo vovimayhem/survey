@@ -22,6 +22,15 @@ define("QUESTIONS", array(
 <body>
     <div class="main-survey" style="position: relative;">
         <div class="content-survey">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <form id="form-survey" action="{{ route('submit') }}" method="POST">
                 @csrf
 
@@ -158,7 +167,7 @@ define("QUESTIONS", array(
         </div>
 
         <footer class="footer-survey">
-            <span>&#169; 2108 Web design by CU Creative CO.</span>
+            <span>&#169; 2019 Community Tax</span>
         </footer>
     </div>
 

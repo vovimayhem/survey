@@ -2,22 +2,40 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="row justify-content-center">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header">Survey results</div>
+				<div class="card-body">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<td>Case #</td>
+								<td>Q1</td>
+								<td>Q2</td>
+								<td>Q3</td>
+								<td>Q4</td>
+								<td>Q5</td>
+								<td>Feedback</td>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach($results as $result)
+							<tr>
+								<td><a href="{{ url('/show', $result->case_number)}}"> {{ $result->case_number }}</a></td>
+								<td>{{$result->question1}}</td>
+								<td>{{$result->question2}}</td>
+								<td>{{$result->question3}}</td>
+								<td>{{$result->question4}}</td>
+								<td>{{$result->question5}}</td>
+								<td>{{$result->feedback}}</td>
+							</tr>
+							@endforeach
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 @endsection
