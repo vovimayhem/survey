@@ -42,7 +42,7 @@ class HomeController extends Controller
         $result->question5 = false;
        }
 
-       $result->feedback = $request->get('texthere');
+       $result->feedback = $request->get('feedback');
        $result->save();
 
        return redirect()->route('survey');

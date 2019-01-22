@@ -11,13 +11,20 @@ define("QUESTIONS", array(
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>Survey</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <!-- <link rel="stylesheet" type="text/css" href="css/starability-all.min.css"> -->
-    <link href="https://fonts.googleapis.com/css?family=Basic|Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/rating.css">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="shortcut icon" href="/favicon.png.ico" type="image/x-icon">
+
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>{{ config('app.name', 'CommunityTax') }}</title>
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <!-- <link rel="stylesheet" type="text/css" href="css/starability-all.min.css"> -->
+  <link href="https://fonts.googleapis.com/css?family=Basic|Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/rating.css">
 </head>
 <body>
     <div class="main-survey" style="position: relative;">
@@ -155,7 +162,7 @@ define("QUESTIONS", array(
                             <h2><?= QUESTIONS["question6"]; ?></h2>
                         </div>
                         <div class="box-textarea">
-                            <textarea id="txthere" name="texthere" placeholder="Type here"></textarea>
+                            <textarea id="txthere" name="feedback" placeholder="Type here" value="{{ old('feedback') }}"></textarea>
                         </div>
                     </div>
                 </div>
