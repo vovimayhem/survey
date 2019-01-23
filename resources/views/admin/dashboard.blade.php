@@ -4,6 +4,11 @@
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="col-md-12">
+			<div class="form-group">
+				<div class="text-right">
+					<a href="{{ route('export') }}" class="btn btn-primary">Export Data</a>
+				</div>
+			</div>
 			<div class="card">
 				<div class="card-header">Survey results</div>
 				<div class="card-body">

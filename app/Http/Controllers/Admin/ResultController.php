@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Result;
+use App\Exports\ResultExport;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ResultController extends Controller
 {
@@ -38,5 +40,16 @@ class ResultController extends Controller
     {
         $result = Result::find($id);
         return view('admin.show', compact('result'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Result  $result
+     * @return \Illuminate\Http\Response
+     */
+    public function exportExcel()
+    {
+        return Excel::download(new ResultExport, 'results.xlsx');
     }
 }

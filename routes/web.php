@@ -1,4 +1,5 @@
 <?php
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +19,4 @@ Route::get('survey/{lang}', 'Survey\SurveyController@index')->name('survey');
 Route::post('survey/submit/{lang}', 'Survey\SurveyController@store')->name('submit');
 Route::resource('/', 'Admin\ResultController', ['only' => ['index', 'show']]);
 Route::get('result/show/{id}', 'Admin\ResultController@show');
-
-Route::get('hola', function() {
-	return view('hola');
-});
+Route::get('result/export', 'Admin\ResultController@exportExcel')->name('export');
