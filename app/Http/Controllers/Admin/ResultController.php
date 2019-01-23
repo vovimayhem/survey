@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Result;
 use App\Exports\ResultExport;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -50,6 +51,7 @@ class ResultController extends Controller
      */
     public function exportExcel()
     {
-        return Excel::download(new ResultExport, 'results.xlsx');
+        $date = Carbon::now();
+        return Excel::download(new ResultExport, 'results_' . $date . '.xlsx');
     }
 }
