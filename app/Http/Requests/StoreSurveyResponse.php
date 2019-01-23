@@ -29,7 +29,7 @@ class StoreSurveyResponse extends FormRequest
             'rating3' => 'required|integer',
             'rating4' => 'required|integer',
             'quality' => 'required',
-            'texthere' => 'required|min:10',
+            'feedback' => 'required|min:10',
         ];
     }
 
@@ -46,7 +46,7 @@ class StoreSurveyResponse extends FormRequest
             'rating3.required|integer' => 'Please rate question three before continuing.',
             'rating4.required|integer' => 'Please rate question four before continuing.',
             'quality.required'         => 'Please let us know if you will come back with Community Tax.',
-            'texthere.required|min:10' => 'Please leave a feedback with at least 10 words.',
+            'feedback.required|min:5' => 'Please leave a feedback with at least 10 words.',
         ];
     }
 }
