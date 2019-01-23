@@ -26,6 +26,7 @@ class ResultExport implements FromCollection, WithHeadings, ShouldAutoSize
             'Value question 3',
             'Value question 4',
             'Value question 5',
+            'Language',
             'Feedback',
             'Created At',
         ];

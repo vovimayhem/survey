@@ -12,7 +12,7 @@ class Result extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'case_number', 'question1', 'question2', 'question3', 'question4', 'question5', 'feedback'
+        'case_number', 'question1', 'question2', 'question3', 'question4', 'question5', 'language', 'feedback', 'created_at',
     ];
 
     /**

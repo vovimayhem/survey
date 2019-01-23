@@ -17,22 +17,37 @@ class SurveyController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        //$this->middleware('guest');
     }
 
-    public function index($lang)
+    public function show_survey_view($lang, $case)
     {
+      $case_param = $case;
       App::setlocale($lang);
-      return view('survey.home');
+      return view('survey.home', compact('case_param'));
     }
 
-    public function store(StoreSurveyResponse $request, $lang)
+    public function show_welcome_view($lang, $case)
+    {
+      $case_param = $case;
+      App::setlocale($lang);
+      return view('survey.welcome', compact('case_param'));
+    }
+
+    public function show_thanks_view($lang, $case)
+    {
+      $case_param = $case;
+      App::setlocale($lang);
+      return view('survey.thanks', compact('case_param'));
+    }
+
+    public function store(StoreSurveyResponse $request, $lang, $case)
     {
    
        $validated = $request->validated();
 
        $result = new Result();
-       $result->case_number = rand(10000, 60000);
+       $result->case_number = $case;
        $result->question1 = $request->get('rating1');
        $result->question2 = $request->get('rating2');
        $result->question3 = $request->get('rating3');
@@ -46,21 +61,10 @@ class SurveyController extends Controller
         $result->question5 = false;
        }
 
+       $result->language = $lang;
        $result->feedback = $request->get('feedback');
        $result->save();
 
-       return redirect()->route('thanks', $lang);
+       return redirect()->route('thanks', [$lang, $case]);
    }
-
-    public function show_welcome_view($lang)
-    {
-      App::setlocale($lang);
-      return view('survey.welcome');
-    }
-
-    public function show_thanks_view($lang)
-    {
-      App::setlocale($lang);
-      return view('survey.thanks');
-    }
 }

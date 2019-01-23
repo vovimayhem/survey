@@ -30,7 +30,7 @@
                 </div>
             </div>
             @endif
-            <form id="form-survey" action="{{ route('submit', Lang::locale()) }}" method="POST">
+            <form id="form-survey" action="{{ route('submit', [ Lang::locale(), $case_param ]) }}" method="POST">
                 @csrf
 
                 <div class="bloque-1 relative flex justify-center">

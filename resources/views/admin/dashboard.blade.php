@@ -21,7 +21,9 @@
 								<td>Q3</td>
 								<td>Q4</td>
 								<td>Q5</td>
+								<td>Language</td>
 								<td>Feedback</td>
+								<td>Created At</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -32,12 +34,21 @@
 								<td>{{$result->question2}}</td>
 								<td>{{$result->question3}}</td>
 								<td>{{$result->question4}}</td>
+
 								@if($result->question5 == true)
 								<td>true</td>
 								@else
 								<td>false</td>
 								@endif
+
+								@if($result->language == 'es')
+								<td>Spanish</td>
+								@else
+								<td>English</td>
+								@endif
+
 								<td>{{$result->feedback}}</td>
+								<td>{{ $result->created_at->format('F d, Y') }}</td>
 							</tr>
 							@endforeach
 						</tbody>

@@ -18,8 +18,6 @@
 		<div class="box-background">
 			<img src="/img/9.jpg">
 		</div>
-
-		<div class="home"><a href="{{ route('welcome', Lang::locale()) }}"><div class="content-home"><img src="/img/home.png"></div></a></div>
 	</div>	
 </body>
 </html>
