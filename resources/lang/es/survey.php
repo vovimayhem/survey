@@ -2,8 +2,8 @@
 
 return [
     'begin' => 'CLICK AQUÍ PARA COMENZAR',
-    'customer'   => 'ENCUESTA',
-    'experience' => 'DE EXPERIENCIA',
+    'customer'   => 'ENCUESTA DE',
+    'experience' => 'EXPERIENCIA',
     'survey'     => 'AL CLIENTE',
     'reset' => 'Your password has been reset!',
     'sent' => 'We have e-mailed your password reset link!',
