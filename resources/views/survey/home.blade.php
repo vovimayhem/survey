@@ -21,10 +21,10 @@ define("QUESTIONS", array(
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>{{ config('app.name', 'CommunityTax') }}</title>
 
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
   <!-- <link rel="stylesheet" type="text/css" href="css/starability-all.min.css"> -->
   <link href="https://fonts.googleapis.com/css?family=Basic|Open+Sans" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="css/rating.css">
+  <link rel="stylesheet" type="text/css" href="/css/rating.css">
 </head>
 <body>
     <div class="main-survey" style="position: relative;">
@@ -178,6 +178,6 @@ define("QUESTIONS", array(
         </footer>
     </div>
 
-    <script src="js/survey.js"></script>
+    <script src="/js/survey.js"></script>
 </body>
 </html>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Survey;
 
 use App\Models\Result;
+use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSurveyResponse;
 
@@ -18,9 +19,10 @@ class SurveyController extends Controller
         $this->middleware('guest');
     }
 
-    public function index()
+    public function index($lang)
     {
-        return view('survey.home');
+      App::setlocale($lang);
+      return view('survey.home');
     }
 
     public function store(StoreSurveyResponse $request)
@@ -49,13 +51,15 @@ class SurveyController extends Controller
        return redirect()->route('thanks');
    }
 
-    public function show_welcome_view()
+    public function show_welcome_view($lang)
     {
-        return view('survey.welcome');
+      App::setlocale($lang);
+      return view('survey.welcome');
     }
 
-    public function show_thanks_view()
+    public function show_thanks_view($lang)
     {
-        return view('survey.thanks');
+      App::setlocale($lang);
+      return view('survey.thanks');
     }
 }
