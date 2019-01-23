@@ -29,4 +29,5 @@ return [
     'incomplete1'       => 'You have',
     'incomplete2_single' => 'unanswered question. Please complete all the questions before continuing.',
     'incomplete2_more'   => 'unanswered questions. Please complete all the questions before continuing',
+    '410'                => 'The request failed because the resource associated with the request has been deleted.',
 ];
