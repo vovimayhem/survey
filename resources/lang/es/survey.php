@@ -3,7 +3,7 @@
 return [
     'begin' => 'CLICK AQUÍ PARA COMENZAR',
     'customer'   => 'ENCUESTA',
-    'experience' => 'DE SATISFACCIÓN',
+    'experience' => 'DE EXPERIENCIA',
     'survey'     => 'AL CLIENTE',
     'reset' => 'Your password has been reset!',
     'sent' => 'We have e-mailed your password reset link!',
