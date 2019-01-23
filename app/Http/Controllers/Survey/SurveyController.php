@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Survey;
 use App\Models\Result;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Lang;
 use App\Http\Requests\StoreSurveyResponse;
 
 class SurveyController extends Controller
@@ -25,7 +26,7 @@ class SurveyController extends Controller
       return view('survey.home');
     }
 
-    public function store(StoreSurveyResponse $request)
+    public function store(StoreSurveyResponse $request, $lang)
     {
    
        $validated = $request->validated();
@@ -48,7 +49,7 @@ class SurveyController extends Controller
        $result->feedback = $request->get('feedback');
        $result->save();
 
-       return redirect()->route('thanks');
+       return redirect()->route('thanks', $lang);
    }
 
     public function show_welcome_view($lang)

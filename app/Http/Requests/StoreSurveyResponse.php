@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreSurveyResponse extends FormRequest
@@ -24,12 +25,12 @@ class StoreSurveyResponse extends FormRequest
     public function rules()
     {
         return [
-            'rating1' => 'required|integer',
-            'rating2' => 'required|integer',
-            'rating3' => 'required|integer',
-            'rating4' => 'required|integer',
-            'quality' => 'required',
-            'feedback' => 'required|min:10',
+            'rating1'  => 'required|integer',
+            'rating2'  => 'required|integer',
+            'rating3'  => 'required|integer',
+            'rating4'  => 'required|integer',
+            'quality'  => 'required',
+            'feedback' => 'required|min:5',
         ];
     }
 
@@ -41,12 +42,12 @@ class StoreSurveyResponse extends FormRequest
     public function messages()
     {
         return [
-            'rating1.required|integer' => 'Please rate question one before continuing.',
-            'rating2.required|integer' => 'Please rate question two before continuing.',
-            'rating3.required|integer' => 'Please rate question three before continuing.',
-            'rating4.required|integer' => 'Please rate question four before continuing.',
-            'quality.required'         => 'Please let us know if you will come back with Community Tax.',
-            'feedback.required|min:5' => 'Please leave a feedback with at least 10 words.',
+            'rating1.required'  => Lang::get('survey.rating1_error'),
+            'rating2.required'  => Lang::get('survey.rating2_error'),
+            'rating3.required'  => Lang::get('survey.rating3_error'),
+            'rating4.required'  => Lang::get('survey.rating4_error'),
+            'quality.required'  => Lang::get('survey.quality_error'),
+            'feedback.required' => Lang::get('survey.feedback_error'),
         ];
     }
 }

@@ -1,13 +1,3 @@
-<?php
-define("QUESTIONS", array(
-    'question1' => "1. On a scale of 1 to 5 stars, how would you rate your final resolution with the IRS and/or State?",
-    'question2' => "2. On a scale of 1 to 5 stars, how would you rate your overall customer service expecience with Community Tax?",
-    'question3' => "3. On a scale of 1 to 5 stars, how would you rate the service received from your licensed  tax practitioner?",
-    'question4' => "4. On a scale of 1 to 5 stars, how wolud you rate the service received from your tax preparer responsible for preparing your tax returns?",
-    'question5' => "5. Will you be returning to Community Tax to prepare your anual tax returns?",
-    'question6' => "Please provide any additional feedback that you wish to share with Community Tax"
-))
-?>
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -38,7 +28,7 @@ define("QUESTIONS", array(
                 </ul>
             </div>
             @endif
-            <form id="form-survey" action="{{ route('submit') }}" method="POST">
+            <form id="form-survey" action="{{ route('submit', Lang::locale()) }}" method="POST">
                 @csrf
 
                 <div class="bloque-1 relative flex justify-center">
@@ -46,16 +36,16 @@ define("QUESTIONS", array(
 
                         <div class="box-content">
                             <div class="question">
-                                <h2><?= QUESTIONS["question1"]; ?></h2>
+                                <h2>@lang('survey.question1')</h2>
                             </div>
                             <div class="ranking-star">
                                 <fieldset class="rating rating-left">
 
-                                    <input type="radio" id="star5" name="rating1" value="5" /><label for="star5" class="margin-right-none"><span class="great">GREAT</span></label>
+                                    <input type="radio" id="star5" name="rating1" value="5" /><label for="star5" class="margin-right-none"><span class="great">@lang('survey.great')</span></label>
                                     <input type="radio" id="star4" name="rating1" value="4" /><label for="star4" ></label>
                                     <input type="radio" id="star3" name="rating1" value="3" /><label for="star3" ></label>
                                     <input type="radio" id="star2" name="rating1" value="2" /><label for="star2" ></label>
-                                    <input type="radio" id="star1" name="rating1" value="1" /><label for="star1"><span class="nogreat">NOT GREAT</span></label>
+                                    <input type="radio" id="star1" name="rating1" value="1" /><label for="star1"><span class="nogreat">@lang('survey.not_great')</span></label>
 
                                 </fieldset>
                             </div>
@@ -63,7 +53,7 @@ define("QUESTIONS", array(
                     </div>
 
                     <div class="box-img img1">
-                        <img src="img/couple-1.png" alt="">
+                        <img src="/img/couple-1.png" alt="">
                     </div>
                 </div>
 
@@ -71,23 +61,23 @@ define("QUESTIONS", array(
                     <div class="box-question">
                         <div class="box-content">                           
                             <div class="question">
-                                <h2><?= QUESTIONS["question2"]; ?></h2>
+                                <h2>@lang('survey.question2')</h2>
                             </div>
                             <div class="ranking-star">
 
                                 <fieldset class="rating rating-right">
-                                    <input type="radio" id="star10" name="rating2" value="5" /><label for="star10" class="margin-right-none"><span class="great">GREAT</span></label>
+                                    <input type="radio" id="star10" name="rating2" value="5" /><label for="star10" class="margin-right-none"><span class="great">@lang('survey.great')</span></label>
                                     <input type="radio" id="star9" name="rating2" value="4" /><label for="star9" ></label>
                                     <input type="radio" id="star8" name="rating2" value="3" /><label for="star8" ></label>
                                     <input type="radio" id="star7" name="rating2" value="2" /><label for="star7" ></label>
-                                    <input type="radio" id="star6" name="rating2" value="1" /><label for="star6"><span class="nogreat">NOT GREAT</span></label>
+                                    <input type="radio" id="star6" name="rating2" value="1" /><label for="star6"><span class="nogreat">@lang('survey.not_great')</span></label>
                                 </fieldset>
                             </div>
                         </div>
                     </div>
 
                     <div class="box-img img2">
-                        <img src="img/Female-Customer-Service-Professional.png" alt="">
+                        <img src="/img/Female-Customer-Service-Professional.png" alt="">
                     </div>
                 </div>
 
@@ -95,23 +85,23 @@ define("QUESTIONS", array(
                     <div class="box-question">
                         <div class="box-content">                           
                             <div class="question">
-                                <h2><?= QUESTIONS["question3"]; ?></h2>
+                                <h2>@lang('survey.question3')</h2>
                             </div>
                             <div class="ranking-star">
 
                                 <fieldset class="rating rating-left">
-                                    <input type="radio" id="star15" name="rating3" value="5" /><label for="star15" class="margin-right-none"><span class="great">GREAT</span></label>
+                                    <input type="radio" id="star15" name="rating3" value="5" /><label for="star15" class="margin-right-none"><span class="great">@lang('survey.great')</span></label>
                                     <input type="radio" id="star14" name="rating3" value="4" /><label for="star14" ></label>
                                     <input type="radio" id="star13" name="rating3" value="3" /><label for="star13" ></label>
                                     <input type="radio" id="star12" name="rating3" value="2" /><label for="star12" ></label>
-                                    <input type="radio" id="star11" name="rating3" value="1" /><label for="star11"><span class="nogreat">NOT GREAT</span></label>
+                                    <input type="radio" id="star11" name="rating3" value="1" /><label for="star11"><span class="nogreat">@lang('survey.not_great')</span></label>
                                 </fieldset>
                             </div>
                         </div>
                     </div>
 
                     <div class="box-img img3">
-                        <img src="img/accountant.png" alt="">
+                        <img src="/img/accountant.png" alt="">
                     </div>
                 </div>
 
@@ -119,23 +109,23 @@ define("QUESTIONS", array(
                     <div class="box-question">
                         <div class="box-content">                           
                             <div class="question">
-                                <h2><?= QUESTIONS["question4"]; ?></h2>
+                                <h2>@lang('survey.question4')</h2>
                             </div>
                             <div class="ranking-star">
 
                                 <fieldset class="rating rating-right">
-                                    <input type="radio" id="star20" name="rating4" value="5" /><label for="star20" class = "margin-right-none" ><span class="great">GREAT</span></label>
+                                    <input type="radio" id="star20" name="rating4" value="5" /><label for="star20" class = "margin-right-none" ><span class="great">@lang('survey.great')</span></label>
                                     <input type="radio" id="star19" name="rating4" value="4" /><label for="star19" ></label>
                                     <input type="radio" id="star18" name="rating4" value="3" /><label for="star18" ></label>
                                     <input type="radio" id="star17" name="rating4" value="2" /><label for="star17" ></label>
-                                    <input type="radio" id="star16" name="rating4" value="1" /><label for="star16"><span class="nogreat">NOT GREAT</span></label>
+                                    <input type="radio" id="star16" name="rating4" value="1" /><label for="star16"><span class="nogreat">@lang('survey.not_great')</span></label>
                                 </fieldset>
                             </div>
                         </div>
                     </div>
 
                     <div class="box-img img4">
-                        <img src="img/man-woman.png" alt="">
+                        <img src="/img/man-woman.png" alt="">
                     </div>
                 </div>
 
@@ -143,14 +133,14 @@ define("QUESTIONS", array(
                 <div class="bloque-5 flex justify-center">
                     <div class="box-question flex flex-column justify-center">
                         <div class="question">
-                            <h2><?= QUESTIONS["question5"]; ?></h2>
+                            <h2>@lang('survey.question5')</h2>
                         </div>
                         <div class="radio">
                             <label for="Absolutely">
-                                <input type="radio" value="Absolutely" name="quality" id="Absolutely"> <span>Absolutely</span>
+                                <input type="radio" value="Absolutely" name="quality" id="Absolutely"> <span>@lang('survey.absolutely')</span>
                             </label>
                             <label for="NotAbsolutely">
-                                <input type="radio" value="NotAbsolutely" name="quality" id="NotAbsolutely"> <span>Unfortunately Not</span>
+                                <input type="radio" value="NotAbsolutely" name="quality" id="NotAbsolutely"> <span>@lang('survey.unfortunately_not')</span>
                             </label>
                         </div>
                     </div>
@@ -159,16 +149,16 @@ define("QUESTIONS", array(
                 <div class="bloque-6 flex justify-center">
                     <div class="box-question flex flex-column justify-center">
                         <div class="question">
-                            <h2><?= QUESTIONS["question6"]; ?></h2>
+                            <h2>@lang('survey.feedback')</h2>
                         </div>
                         <div class="box-textarea">
-                            <textarea id="txthere" name="feedback" placeholder="Type here">{{ old('feedback') }}</textarea>
+                            <textarea id="txthere" name="feedback" placeholder="@lang('survey.type_here')">{{ old('feedback') }}</textarea>
                         </div>
                     </div>
                 </div>
 
                 <div class="bloque-submit">
-                    <button type="submit" id="sendSurvey">Submit</button>
+                    <button type="submit" id="sendSurvey">@lang('survey.submit')</button>
                 </div>
             </form>
         </div>

@@ -21,7 +21,7 @@
 			</div>
 			<div class="box-textInfo">
 				<div><h1 class="CUSTOMER_EXPERIENCE_SURVEY">@lang('survey.customer')<br />@lang('survey.experience')<br />@lang('survey.survey')</h1></div>
-				<div class="box-last"><a href="{{ route('survey') }}" class="CLICK_HERE_TO_BEGIN">@lang('survey.begin') ></a></div>
+				<div class="box-last"><a href="{{ route('survey', Lang::locale()) }}" class="CLICK_HERE_TO_BEGIN">@lang('survey.begin') ></a></div>
 			</div>
 			<div class="box-img-2">
 				<img src="/img/CT_Mockup2.png">

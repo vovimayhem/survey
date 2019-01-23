@@ -8,19 +8,18 @@
 	<link rel="stylesheet" type="text/css" href="/css/style.css">	
 </head>
 <body>
-
 	<div class="content-wrap" style="overflow:hidden;">
 		<div class="footer-content flex justify-center align-center">
 			<div class="logo">
 				<img src="/img/logo-big.png">
 			</div>
 		</div>
-		<div class="box-center-thanks flex align-center justify-center"><h1>Thank You!</h1></div>
+		<div class="box-center-thanks flex align-center justify-center"><h1>@lang('survey.thanks')</h1></div>
 		<div class="box-background">
 			<img src="/img/9.jpg">
 		</div>
 
-		<div class="home"><a href="{{ route('welcome') }}"><div class="content-home"><img src="/img/home.png"></div></a></div>
+		<div class="home"><a href="{{ route('welcome', Lang::locale()) }}"><div class="content-home"><img src="/img/home.png"></div></a></div>
 	</div>	
 </body>
 </html>
