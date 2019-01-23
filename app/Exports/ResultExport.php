@@ -5,8 +5,9 @@ namespace App\Exports;
 use App\Models\Result;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class ResultExport implements FromCollection, WithHeadings
+class ResultExport implements FromCollection, WithHeadings, ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection
