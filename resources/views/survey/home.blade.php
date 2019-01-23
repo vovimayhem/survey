@@ -20,12 +20,14 @@
     <div class="main-survey" style="position: relative;">
         <div class="content-survey">
             @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+            <div class="alert alert-danger alert-block">
+                <div class="text-center">
+                    @if( count($errors->all()) > 1 )
+                    <h4> @lang('survey.incomplete1') {{ count($errors->all()) }} @lang('survey.incomplete2_more') </h4>
+                    @else
+                    <h4> @lang('survey.incomplete1') {{ count($errors->all()) }} @lang('survey.incomplete2_single') </h4>
+                    @endif
+                </div>
             </div>
             @endif
             <form id="form-survey" action="{{ route('submit', Lang::locale()) }}" method="POST">
@@ -88,7 +90,6 @@
                                 <h2>@lang('survey.question3')</h2>
                             </div>
                             <div class="ranking-star">
-
                                 <fieldset class="rating rating-left">
                                     <input type="radio" id="star15" name="rating3" value="5" /><label for="star15" class="margin-right-none"><span class="great">@lang('survey.great')</span></label>
                                     <input type="radio" id="star14" name="rating3" value="4" /><label for="star14" ></label>

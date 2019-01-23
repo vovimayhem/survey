@@ -26,4 +26,7 @@ return [
     'rating4_error'     => 'Please rate question four before continuing.',
     'quality_error'     => 'Please let us know if you will come back with Community Tax.',
     'feedback_error'    => 'Please leave a feedback with at least 5 words.',
+    'incomplete1'       => 'You have',
+    'incomplete2_single' => 'unanswered question. Please complete all the questions before continuing.',
+    'incomplete2_more'   => 'unanswered questions. Please complete all the questions before continuing',
 ];

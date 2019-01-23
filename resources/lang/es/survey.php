@@ -26,4 +26,7 @@ return [
     'rating4_error'     => 'Por favor califique la pregunta cuatro antes de continuar.',
     'quality_error'     => 'Por favor, háganos saber si regresará con Community Tax.',
     'feedback_error'    => 'Por favor, deje un comentario con al menos 5 palabras.',
+    'incomplete1'       => 'Usted tiene',
+    'incomplete2_single' => 'pregunta sin contestar. Por Favor complete todas las preguntas antes de continuar',
+    'incomplete2_more'   => 'preguntas sin contestar. Por Favor complete todas las preguntas antes de continuar',
 ];
