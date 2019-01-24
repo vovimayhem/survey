@@ -21,3 +21,4 @@ Route::post('survey/submit/{lang}/{case}', 'Survey\SurveyController@store')->nam
 Route::resource('/', 'Admin\ResultController', ['only' => ['index', 'show']]);
 Route::get('result/show/{id}', 'Admin\ResultController@show');
 Route::get('result/export', 'Admin\ResultController@exportExcel')->name('export');
+Route::get('result/search', 'Admin\ResultController@search')->name('search');

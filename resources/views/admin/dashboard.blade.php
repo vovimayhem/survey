@@ -9,6 +9,30 @@
 					<a href="{{ route('export') }}" class="btn btn-primary">Export Data</a>
 				</div>
 			</div>
+
+			<div class="box-body">
+				<div class="form-group">
+					Filters:
+					<a href="/?filter=en">English</a> |
+					<a href="/?filter=es">Spanish</a> |
+					<a href="/?filter=newest">Newest</a> |
+					<a href="/?filter=oldest">Oldest</a> |
+					<a href="/">Clear</a> |
+				</div>
+
+				<div class="form-group">
+					<form action="{{ route('search') }}" method="get" class="form-inline">
+						<div class="form-group">
+							<input type="text" class="form-control" name="input_search" placeholder="Case #">
+						</div>
+
+						<div class="form-group" align="rigth">
+							<button class="btn btn-primary" type="submit">Search</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			
 			<div class="card">
 				<div class="card-header">Survey results</div>
 				<div class="card-body">
