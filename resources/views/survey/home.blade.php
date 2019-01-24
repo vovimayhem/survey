@@ -17,7 +17,7 @@
   <link rel="stylesheet" type="text/css" href="/css/rating.css">
 </head>
 <body>
-    <div class="main-survey" style="position: relative;">
+    <div id="app" class="main-survey" style="position: relative;">
         <div class="content-survey">
             @if ($errors->any())
             <div class="alert alert-danger alert-block">
@@ -41,7 +41,7 @@
                                 <h2>@lang('survey.question1')</h2>
                             </div>
                             <div class="ranking-star">
-                                <fieldset class="rating rating-left">
+                                <fieldset @change="onChange1" class="rating rating-left">
 
                                     <input type="radio" id="star5" name="rating1" value="5" {{ old('rating1')=="5" ? 'checked='.'"'.'checked'.'"' : '' }}  /><label for="star5" class="margin-right-none"><span class="great">@lang('survey.great')</span></label>
                                     <input type="radio" id="star4" name="rating1" value="4" {{ old('rating1')=="4" ? 'checked='.'"'.'checked'.'"' : '' }}/><label for="star4" ></label>
@@ -67,7 +67,7 @@
                             </div>
                             <div class="ranking-star">
 
-                                <fieldset class="rating rating-right">
+                                <fieldset @change="onChange2" class="rating rating-right">
                                     <input type="radio" id="star10" name="rating2" value="5" {{ old('rating2')=="5" ? 'checked='.'"'.'checked'.'"' : '' }}/><label for="star10" class="margin-right-none"><span class="great">@lang('survey.great')</span></label>
                                     <input type="radio" id="star9" name="rating2" value="4" {{ old('rating2')=="4" ? 'checked='.'"'.'checked'.'"' : '' }}/><label for="star9" ></label>
                                     <input type="radio" id="star8" name="rating2" value="3" {{ old('rating2')=="3" ? 'checked='.'"'.'checked'.'"' : '' }}/><label for="star8" ></label>
@@ -90,7 +90,7 @@
                                 <h2>@lang('survey.question3')</h2>
                             </div>
                             <div class="ranking-star">
-                                <fieldset class="rating rating-left">
+                                <fieldset @change="onChange3" class="rating rating-left">
                                     <input type="radio" id="star15" name="rating3" value="5" {{ old('rating3')=="5" ? 'checked='.'"'.'checked'.'"' : '' }}/><label for="star15" class="margin-right-none"><span class="great">@lang('survey.great')</span></label>
                                     <input type="radio" id="star14" name="rating3" value="4" {{ old('rating3')=="4" ? 'checked='.'"'.'checked'.'"' : '' }}/><label for="star14" ></label>
                                     <input type="radio" id="star13" name="rating3" value="3" {{ old('rating3')=="3" ? 'checked='.'"'.'checked'.'"' : '' }}/><label for="star13" ></label>
@@ -114,7 +114,7 @@
                             </div>
                             <div class="ranking-star">
 
-                                <fieldset class="rating rating-right">
+                                <fieldset @change="onChange4" class="rating rating-right">
                                     <input type="radio" id="star20" name="rating4" value="5" {{ old('rating4')=="5" ? 'checked='.'"'.'checked'.'"' : '' }}/><label for="star20" class = "margin-right-none" ><span class="great">@lang('survey.great')</span></label>
                                     <input type="radio" id="star19" name="rating4" value="4" {{ old('rating4')=="4" ? 'checked='.'"'.'checked'.'"' : '' }}/><label for="star19" ></label>
                                     <input type="radio" id="star18" name="rating4" value="3" {{ old('rating4')=="3" ? 'checked='.'"'.'checked'.'"' : '' }}/><label for="star18" ></label>
@@ -137,10 +137,10 @@
                         </div>
                         <div class="radio">
                             <label for="Absolutely">
-                                <input type="radio" value="Absolutely" name="quality" id="Absolutely" {{ old('quality')=="Absolutely" ? 'checked='.'"'.'checked'.'"' : '' }}> <span>@lang('survey.absolutely')</span>
+                                <input @change="radio1" type="radio" value="Absolutely" name="quality" id="Absolutely" {{ old('quality')=="Absolutely" ? 'checked='.'"'.'checked'.'"' : '' }}> <span>@lang('survey.absolutely')</span>
                             </label>
                             <label for="NotAbsolutely">
-                                <input type="radio" value="NotAbsolutely" name="quality" id="NotAbsolutely" {{ old('quality')=="NotAbsolutely" ? 'checked='.'"'.'checked'.'"' : '' }}> <span>@lang('survey.unfortunately_not')</span>
+                                <input @change="radio2" type="radio" value="NotAbsolutely" name="quality" id="NotAbsolutely" {{ old('quality')=="NotAbsolutely" ? 'checked='.'"'.'checked'.'"' : '' }}> <span>@lang('survey.unfortunately_not')</span>
                             </label>
                         </div>
                     </div>
@@ -169,5 +169,47 @@
     </div>
 
     <script src="/js/survey.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        const app = new Vue({
+          el: "#app",
+          data: function() {
+            return {
+              message: "Vue"
+          }
+      },
+      methods: {
+        onChange1(event) {
+          console.log(event.target.value);
+      },
+
+      onChange2(event) {
+          console.log(event.target.value);
+      },
+
+      onChange3(event) {
+          console.log(event.target.value);
+      },
+
+      onChange4(event) {
+          console.log(event.target.value);
+      },
+
+      radio1(event) {
+          console.log(event.target.value);
+      },
+
+      radio2(event) {
+          console.log(event.target.value);
+      },
+
+      feedback(event) {
+          console.log(event.target.value);
+      }
+  }
+})
+</script>
+<!-- /.content -->
 </body>
 </html>
