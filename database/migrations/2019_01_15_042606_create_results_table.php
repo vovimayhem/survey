@@ -23,8 +23,8 @@ class CreateResultsTable extends Migration
             $table->integer('question4');
             $table->boolean('question5');
             $table->string('language');
-            $table->text('feedback');
-            $table->string('status')->default(Result::STATUS_INCOMPLETE);
+            $table->text('feedback')->nullable();
+            $table->boolean('status')->default(Result::STATUS_INCOMPLETE);
             $table->timestamps();
         });
     }
