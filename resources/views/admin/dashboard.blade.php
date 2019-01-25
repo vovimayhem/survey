@@ -47,7 +47,9 @@
 								<td>Q5</td>
 								<td>Language</td>
 								<td>Feedback</td>
+								<td>Status</td>
 								<td>Created At</td>
+								<td>Updated At</td>
 							</tr>
 						</thead>
 						<tbody>
@@ -72,7 +74,15 @@
 								@endif
 
 								<td>{{$result->feedback}}</td>
+
+								@if($result->status == '1')
+								<td>Completed</td>
+								@else
+								<td>Incomplete</td>
+								@endif
+
 								<td>{{ $result->created_at->format('F d, Y') }}</td>
+								<td>{{ $result->updated_at->format('F d, Y') }}</td>
 							</tr>
 							@endforeach
 						</tbody>

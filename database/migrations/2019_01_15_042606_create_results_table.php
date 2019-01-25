@@ -17,14 +17,14 @@ class CreateResultsTable extends Migration
         Schema::create('results', function (Blueprint $table) {
             $table->increments('id');
             $table->string('case_number');
-            $table->integer('question1');
-            $table->integer('question2');
-            $table->integer('question3');
-            $table->integer('question4');
-            $table->boolean('question5');
-            $table->string('language');
+            $table->integer('question1')->nullable();
+            $table->integer('question2')->nullable();
+            $table->integer('question3')->nullable();
+            $table->integer('question4')->nullable();
+            $table->boolean('question5')->nullable();
+            $table->string('language')->nullable();
             $table->text('feedback')->nullable();
-            $table->boolean('status')->default(Result::STATUS_INCOMPLETE);
+            $table->boolean('status')->default(Result::STATUS_INCOMPLETE)->nullable();;
             $table->timestamps();
         });
     }

@@ -11,4 +11,4 @@
 |
 */
 
-Route::resource('results', 'ApiControllers\ResultController', ['only' => ['index',  'store', 'update', 'show']]);
+Route::resource('results', 'ApiControllers\ResultController', ['only' => ['index','update','show']]);
