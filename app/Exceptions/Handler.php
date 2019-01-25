@@ -71,7 +71,9 @@ class Handler extends ExceptionHandler
         }
 
         if($exception instanceof NotFoundHttpException) {
-            return $this->errorResponse('No se encontro la url especificada', 404);
+            if ($request->is('api/*')) {
+                return $this->errorResponse('No se encontro la url especificada', 404);
+            }
         }
 
         if($exception instanceof MethodNotAllowedHttpException) {

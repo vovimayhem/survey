@@ -17,7 +17,8 @@ class SurveyController extends Controller
      */
     public function __construct()
     {
-      $this->middleware('verifiedSurvey', ['except' => ['show_thanks_view']] );
+      $this->middleware('survey.completed', ['except' => ['show_thanks_view']] );
+      $this->middleware('valid.survey');
     }
 
     public function show_survey_view($lang, $case)
