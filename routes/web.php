@@ -18,7 +18,7 @@ Route::get('welcome/{lang}/case/{case}', 'Survey\SurveyController@show_welcome_v
 Route::get('thanks/{lang}/case/{case}', 'Survey\SurveyController@show_thanks_view')->name('thanks');
 Route::post('survey/submit/{lang}/{case}', 'Survey\SurveyController@store')->name('submit');
 
-Route::resource('/', 'Admin\ResultController', ['only' => ['index', 'show']]);
-Route::get('result/show/{id}', 'Admin\ResultController@show');
-Route::get('result/export', 'Admin\ResultController@exportExcel')->name('export');
-Route::get('result/search', 'Admin\ResultController@search')->name('search');
+Route::resource('/', 'Admin\DashboardController', ['only' => ['index', 'show']]);
+Route::get('result/show/{id}', 'Admin\DashboardController@show');
+Route::get('result/export', 'Admin\DashboardController@exportExcel')->name('export');
+Route::get('result/search', 'Admin\DashboardController@search')->name('search');

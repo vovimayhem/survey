@@ -9,7 +9,7 @@ use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 
-class ResultController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Create a new controller instance.
