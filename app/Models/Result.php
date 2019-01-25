@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Result extends Model
 {
+    const STATUS_INCOMPLETE = 'Incomplete';    
+    const STATUS_COMPLETED  = 'Completed';
+
+
     /**
      * The attributes that are mass assignable.
      *

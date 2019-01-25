@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Result;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -23,6 +24,7 @@ class CreateResultsTable extends Migration
             $table->boolean('question5');
             $table->string('language');
             $table->text('feedback');
+            $table->string('status')->default(Result::STATUS_INCOMPLETE);
             $table->timestamps();
         });
     }
