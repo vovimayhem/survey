@@ -24,7 +24,8 @@ class CreateResultsTable extends Migration
             $table->boolean('question5')->nullable();
             $table->string('language')->nullable();
             $table->text('feedback')->nullable();
-            $table->boolean('status')->default(Result::STATUS_INCOMPLETE)->nullable();;
+            $table->boolean('status')->default(Result::STATUS_INCOMPLETE)->nullable();
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }
