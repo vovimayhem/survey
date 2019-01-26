@@ -101,7 +101,9 @@ class DashboardController extends Controller
         $result->url = $url;
         $result->save();
 
-        return view('admin.dashboard.home');
+        $results = Result::orderBy('case_number')->paginate(20);
+
+        return view('admin.dashboard.home', compact('results'));
     }
 
     /**

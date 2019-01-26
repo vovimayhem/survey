@@ -6,7 +6,9 @@ use App\Models\Result;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Lang;
+use App\Notifications\SurveyCompleted;
 use App\Http\Requests\StoreSurveyResponse;
+use Illuminate\Support\Facades\Notification;
 
 class SurveyController extends Controller
 {
@@ -81,6 +83,8 @@ class SurveyController extends Controller
     $result->feedback = $request->get('feedback');
     $result->status = '1';
     $result->save();
+    
+    Notification::route('mail', 'anhernandez@communitytax.com')->notify(new SurveyCompleted($result));
 
     return redirect()->route('thanks', [$lang, $case]);
   }
