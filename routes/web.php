@@ -18,3 +18,4 @@ Route::resource('admin/', 'Admin\DashboardController', ['except' => ['destroy']]
 Route::get('admin/result/show/{id}', 'Admin\DashboardController@show');
 Route::get('admin/result/export', 'Admin\DashboardController@exportExcel')->name('export');
 Route::get('admin/result/search', 'Admin\DashboardController@search')->name('search');
+Route::post('admin/logout','Auth\LoginController@logout')->name('user.logout');
