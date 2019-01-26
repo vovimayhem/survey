@@ -1,4 +1,8 @@
 <?php
+
+use App\Models\Result;
+use App\Mail\SurveyCompleted;
+use Illuminate\Support\Facades\Mail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,3 +26,8 @@ Route::resource('admin/', 'Admin\DashboardController', ['except' => ['destroy']]
 Route::get('admin/result/show/{id}', 'Admin\DashboardController@show');
 Route::get('admin/result/export', 'Admin\DashboardController@exportExcel')->name('export');
 Route::get('admin/result/search', 'Admin\DashboardController@search')->name('search');
+
+Route::get('chemo', function() {
+	$result = Result::findOrFail(1);
+	Mail::to('anhernandez@communitytax.com')->send(new SurveyCompleted($result));
+});
