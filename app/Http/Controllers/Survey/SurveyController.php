@@ -17,14 +17,31 @@ class SurveyController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('verifiedSurvey', ['except' => ['show_thanks_view']] );
+      $this->middleware('survey.completed', ['except' => ['show_thanks_view']] );
+      $this->middleware('valid.survey');
     }
 
     public function show_survey_view($lang, $case)
     {
       $case_param = $case;
       App::setlocale($lang);
-      return view('survey.home', compact('case_param'));
+
+      $result = Result::where('case_number', $case)->get()->first();
+
+      if( empty($result) ) {
+        $result = new Result();
+        $result->case_number = $case;
+        $result->question1 = 0;
+        $result->question2 = 0;
+        $result->question3 = 0;
+        $result->question4 = 0;
+        $result->question5 = '0';
+        $result->language  = $lang;
+        $result->feedback  = null;
+        $result->status    = '0';
+        $result->save();
+      }
+      return view('survey.home', compact('case_param', 'result'));
     }
 
     public function show_welcome_view($lang, $case)
@@ -43,28 +60,28 @@ class SurveyController extends Controller
 
     public function store(StoreSurveyResponse $request, $lang, $case)
     {
-   
-       $validated = $request->validated();
 
-       $result = new Result();
-       $result->case_number = $case;
-       $result->question1 = $request->get('rating1');
-       $result->question2 = $request->get('rating2');
-       $result->question3 = $request->get('rating3');
-       $result->question4 = $request->get('rating4');
+     $validated = $request->validated();
 
-       $quality = $request->get('quality');
+     $result = Result::where('case_number', $case)->get()->first();
+     $result->question1 = $request->get('rating1');
+     $result->question2 = $request->get('rating2');
+     $result->question3 = $request->get('rating3');
+     $result->question4 = $request->get('rating4');
 
-       if( $quality == 'Absolutely' ) {
-        $result->question5 = true;
-       } else {
-        $result->question5 = false;
-       }
+     $quality = $request->get('quality');
 
-       $result->language = $lang;
-       $result->feedback = $request->get('feedback');
-       $result->save();
+     if( $quality == 'Absolutely' ) {
+      $result->question5 = '1';
+    } else {
+      $result->question5 = '0';
+    }
 
-       return redirect()->route('thanks', [$lang, $case]);
-   }
+    $result->language = $lang;
+    $result->feedback = $request->get('feedback');
+    $result->status = '1';
+    $result->save();
+
+    return redirect()->route('thanks', [$lang, $case]);
+  }
 }

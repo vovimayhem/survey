@@ -30,4 +30,5 @@ return [
     'incomplete2_single' => 'unanswered question. Please complete all the questions before continuing.',
     'incomplete2_more'   => 'unanswered questions. Please complete all the questions before continuing',
     '410'                => 'The request failed because the resource associated with the request has been deleted.',
+    '404'                => 'The requested resource could not be found but may be available in the future.',
 ];

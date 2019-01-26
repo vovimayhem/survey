@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use App\Models\Result;
 
-class SurveyCompleted
+class ValidSurvey
 {
     /**
      * Handle an incoming request.
@@ -17,9 +17,9 @@ class SurveyCompleted
     public function handle($request, Closure $next)
     {
         $case_id = $request->route()->parameter('case');
-        $result = Result::where('case_number', $case_id)->where('status', '1')->get();
-        if ( !$result->isEmpty() ) {
-            abort('410');
+        $result = Result::where('case_number', $case_id)->get();
+        if ( $result->isEmpty() ) {
+            abort('404');
         }
         return $next($request);
     }

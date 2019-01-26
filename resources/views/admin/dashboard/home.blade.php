@@ -4,12 +4,6 @@
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="col-md-12">
-			<div class="form-group">
-				<div class="text-right">
-					<a href="{{ route('export') }}" class="btn btn-primary">Export Data</a>
-				</div>
-			</div>
-
 			<div class="box-body">
 				<div class="form-group">
 					Filters:
@@ -47,13 +41,15 @@
 								<td>Q5</td>
 								<td>Language</td>
 								<td>Feedback</td>
+								<td>Status</td>
 								<td>Created At</td>
+								<td>Updated At</td>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach($results as $result)
 							<tr>
-								<td><a href="{{ url('/result/show', $result->id)}}"> {{ $result->case_number }}</a></td>
+								<td><a href="{{ url('admin/result/show', $result->id)}}"> {{ $result->case_number }}</a></td>
 								<td>{{$result->question1}}</td>
 								<td>{{$result->question2}}</td>
 								<td>{{$result->question3}}</td>
@@ -72,7 +68,15 @@
 								@endif
 
 								<td>{{$result->feedback}}</td>
+
+								@if($result->status == '1')
+								<td>Completed</td>
+								@else
+								<td>Incomplete</td>
+								@endif
+
 								<td>{{ $result->created_at->format('F d, Y') }}</td>
+								<td>{{ $result->updated_at->format('F d, Y') }}</td>
 							</tr>
 							@endforeach
 						</tbody>

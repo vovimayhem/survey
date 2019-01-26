@@ -9,7 +9,7 @@ use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 
-class ResultController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -32,32 +32,78 @@ class ResultController extends Controller
 
         if(empty($filter)) {
             $results = Result::orderBy('case_number')->paginate(20);
-            return view('admin.dashboard', compact('results'));
+            return view('admin.dashboard.home', compact('results'));
         } else {
             switch ($filter) {
                 case 'en':
                 $results = Result::orderBy('case_number')->where('language', 'en')->paginate(20);
-                return view('admin.dashboard', compact('results'));
+                return view('admin.dashboard.home', compact('results'));
                 break;
 
                 case 'es':
                 $results = Result::orderBy('case_number')->where('language', 'es')->paginate(20);
-                return view('admin.dashboard', compact('results'));
+                return view('admin.dashboard.home', compact('results'));
                 break;
 
                 case 'newest':
                 $results = Result::orderBy('case_number', 'DESC')->paginate(20);
-                return view('admin.dashboard', compact('results'));
+                return view('admin.dashboard.home', compact('results'));
                 break;
 
                 case 'oldest':
                 $results = Result::orderBy('case_number', 'ASC')->paginate(20);
-                return view('admin.dashboard', compact('results'));
+                return view('admin.dashboard.home', compact('results'));
                 break;
             }
         }
     }
-    
+
+    public function create()
+    {
+        return view('admin.builder.create');
+    }
+
+     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+     public function store(Request $request)
+     {
+        $rules = [
+            'case_number' => 'required|unique:results',
+            'lang'        => 'required|string',
+        ];
+
+        $this->validate($request, $rules);
+
+        $url = null;
+        $case = $request->get('case_number');
+        $lang = $request->get('lang');
+
+        if( $request->get('lang') === 'English') {
+            $url = 'http://127.0.0.1:8000/welcome/en/case/' . $case;
+        } else {
+            $url = 'http://127.0.0.1:8000/welcome/es/case/' . $case;
+        }
+
+        $result = new Result();
+        $result->case_number = $case;
+        $result->question1 = 0;
+        $result->question2 = 0;
+        $result->question3 = 0;
+        $result->question4 = 0;
+        $result->question5 = '0';
+        $result->language = $lang;
+        $result->feedback = null;
+        $result->status = '0';
+        $result->url = $url;
+        $result->save();
+
+        return view('admin.dashboard.home');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -67,7 +113,7 @@ class ResultController extends Controller
     public function show($id)
     {
         $result = Result::find($id);
-        return view('admin.show', compact('result'));
+        return view('admin.dashboard.show', compact('result'));
     }
 
     public function exportExcel()
@@ -80,6 +126,6 @@ class ResultController extends Controller
     {
         $search = $request->input('input_search');
         $results = Result::where('case_number', $search)->get();
-        return view('admin.dashboard', compact('results'));
+        return view('admin.dashboard.home', compact('results'));
     }
 }

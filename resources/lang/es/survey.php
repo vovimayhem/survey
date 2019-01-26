@@ -30,4 +30,5 @@ return [
     'incomplete2_single' => 'pregunta sin contestar. Por Favor complete todas las preguntas antes de continuar',
     'incomplete2_more'   => 'preguntas sin contestar. Por Favor complete todas las preguntas antes de continuar',
     '410'                => 'La solicitud ha fallado porque el recurso asociado con la solicitud se ha eliminado.',
+    '404'                => 'El recurso solicitado no se pudo encontrar pero podría estar disponible en el futuro.',
 ];

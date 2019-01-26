@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\ValidSurvey;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -60,7 +61,9 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'verifiedSurvey' => \App\Http\Middleware\SurveyCompleted::class,
+        'survey.completed' => \App\Http\Middleware\SurveyCompleted::class,
+        'valid.survey' => \App\Http\Middleware\ValidSurvey::class,
+        'transform.input' => \App\Http\Middleware\TransformInput::class,
     ];
 
     /**
