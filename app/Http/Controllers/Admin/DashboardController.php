@@ -6,6 +6,7 @@ use App\Models\Result;
 use Illuminate\Http\Request;
 use App\Exports\ResultExport;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -83,9 +84,9 @@ class DashboardController extends Controller
         $lang = $request->get('lang');
 
         if( $request->get('lang') === 'English') {
-            $url = 'http://127.0.0.1:8000/welcome/en/case/' . $case;
+            $url = URL::to('/') . '/welcome/en/case/' . $case;
         } else {
-            $url = 'http://127.0.0.1:8000/welcome/es/case/' . $case;
+            $url = URL::to('/') . '/welcome/en/case/' . $case;
         }
 
         $result = new Result();
