@@ -2,6 +2,15 @@
 
 @section('content')
 <div class="container">
+	@if ($errors->any())
+	<div class="alert alert-danger">
+		<ul>
+			@foreach ($errors->all() as $error)
+			<li>{{ $error }}</li>
+			@endforeach
+		</ul>
+	</div>
+	@endif
 	<div class="row justify-content-center">
 		<div class="col-md-12">
 			<div class="card">
@@ -33,7 +42,7 @@
 						<div class="form-group">
 							<div class="text-right">
 								<button type="submit" class="btn btn-success">Generate</button>
-								<a href="{{ url('/') }}" class="btn btn-danger">Cancel</a>
+								<a href="{{ url('/admin') }}" class="btn btn-danger">Cancel</a>
 							</div>
 						</div>
 					</form>

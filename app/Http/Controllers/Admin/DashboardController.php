@@ -79,7 +79,7 @@ class DashboardController extends Controller
         $this->validate($request, $rules);
 
         $url = null;
-        $case = $request->get('case');
+        $case = $request->get('case_number');
         $lang = $request->get('lang');
 
         if( $request->get('lang') === 'English') {
@@ -89,18 +89,19 @@ class DashboardController extends Controller
         }
 
         $result = new Result();
+        $result->case_number = $case;
         $result->question1 = 0;
         $result->question2 = 0;
         $result->question3 = 0;
         $result->question4 = 0;
         $result->question5 = '0';
         $result->language = $lang;
-        $result->feedback = null
+        $result->feedback = null;
         $result->status = '0';
         $result->url = $url;
         $result->save();
 
-        return redirect()->url('/admin');
+        return view('admin.dashboard.home');
     }
 
     /**

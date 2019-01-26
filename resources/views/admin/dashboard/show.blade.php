@@ -22,7 +22,9 @@
 
 						<p>Feedback - {{ $result->feedback }}</p> 
 
-						<a href="{{ url('/') }}" class="btn btn-primary">Back</a>
+						<p>Link - {{ $result->url }}</p> 
+
+						<a href="{{ url('/admin') }}" class="btn btn-primary">Back</a>
 					</center>
 				</div>
 			</div>
