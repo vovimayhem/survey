@@ -81,12 +81,14 @@ class DashboardController extends Controller
 
         $url = null;
         $case = $request->get('case_number');
-        $lang = $request->get('lang');
+        $lang = null;
 
-        if( $request->get('lang') === 'English') {
+        if( $request->get('lang') === '1') {
             $url = URL::to('/') . '/welcome/en/case/' . $case;
+            $lang = 'en';
         } else {
-            $url = URL::to('/') . '/welcome/en/case/' . $case;
+            $url = URL::to('/') . '/welcome/es/case/' . $case;
+            $lang = 'es';
         }
 
         $result = new Result();
@@ -95,10 +97,10 @@ class DashboardController extends Controller
         $result->question2 = 0;
         $result->question3 = 0;
         $result->question4 = 0;
-        $result->question5 = '0';
+        $result->question5 = Result::SURVEY_STATUS_FALSE;
         $result->language = $lang;
         $result->feedback = null;
-        $result->status = '0';
+        $result->status = Result::SURVEY_STATUS_CREATED;
         $result->url = $url;
         $result->save();
 

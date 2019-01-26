@@ -39,10 +39,10 @@ class ResultController extends ApiController
             'question2'   => 'required|integer',
             'question3'   => 'required|integer',
             'question4'   => 'required|integer',
-            'question5'   => 'required|boolean',
+            'question5'   => 'required|string',
             'language'    => 'required|string',
             'feedback'    => 'nullable|string',
-            'status'      => 'required|boolean',
+            'status'      => 'required|string',
         ];
 
         $this->validate($request, $rules);
@@ -90,47 +90,45 @@ class ResultController extends ApiController
             'question2'   => 'nullable|integer',
             'question3'   => 'nullable|integer',
             'question4'   => 'nullable|integer',
-            'question5'   => 'nullable|boolean',
+            'question5'   => 'nullable|string',
             'language'    => 'nullable|string',
             'feedback'    => 'nullable|string',
-            'status'      => 'nullable|boolean',
+            'status'      => 'nullable|string',
         ];
 
         $this->validate($request, $rules);
 
         if( $request->has('question1') ) {
-            $result->question1   = $request->question1;
+            $result->question1 = $request->question1;
         }
 
         if( $request->has('question2') ) {
-            $result->question2   = $request->question2;
+            $result->question2 = $request->question2;
         }
 
         if( $request->has('question3') ) {
-            $result->question3   = $request->question3;
+            $result->question3 = $request->question3;
         }
-
 
         if( $request->has('question4') ) {
-            $result->question4   = $request->question4;
+            $result->question4 = $request->question4;
         }
 
-
         if( $request->has('question5') ) {
-            $result->question5   = $request->question5;
+            $result->question5 = $request->question5;
         }
 
 
         if( $request->has('language') ) {
-            $result->language   = $request->language;
+            $result->language = $request->language;
         }
 
         if( $request->has('feedback') ) {
-            $result->feedback   = $request->feedback;
+            $result->feedback = $request->feedback;
         }
 
         if( $request->has('status') ) {
-            $result->status   = $request->status;
+            $result->status = $request->status;
         }
 
         $result->save();

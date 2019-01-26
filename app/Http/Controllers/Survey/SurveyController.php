@@ -33,14 +33,14 @@ class SurveyController extends Controller
       if( empty($result) ) {
         $result = new Result();
         $result->case_number = $case;
-        $result->question1 = 0;
-        $result->question2 = 0;
-        $result->question3 = 0;
-        $result->question4 = 0;
-        $result->question5 = '0';
-        $result->language  = $lang;
-        $result->feedback  = null;
-        $result->status    = '0';
+        $result->question1   = 0;
+        $result->question2   = 0;
+        $result->question3   = 0;
+        $result->question4   = 0;
+        $result->question5   = Result::SURVEY_STATUS_FALSE;
+        $result->language    = $lang;
+        $result->feedback    = null;
+        $result->status      = Result::SURVEY_STATUS_CREATED;
         $result->save();
       }
       return view('survey.home', compact('case_param', 'result'));
@@ -74,14 +74,14 @@ class SurveyController extends Controller
      $quality = $request->get('quality');
 
      if( $quality == 'Absolutely' ) {
-      $result->question5 = '1';
+      $result->question5 = Result::SURVEY_STATUS_TRUE;
     } else {
-      $result->question5 = '0';
+      $result->question5 = Result::SURVEY_STATUS_FALSE;
     }
 
     $result->language = $lang;
     $result->feedback = $request->get('feedback');
-    $result->status = '1';
+    $result->status = Result::SURVEY_STATUS_COMPLETED;
     $result->save();
     
     Notification::route('mail', 'anhernandez@communitytax.com')->notify(new SurveyCompleted($result));

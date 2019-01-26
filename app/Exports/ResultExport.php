@@ -28,7 +28,10 @@ class ResultExport implements FromCollection, WithHeadings, ShouldAutoSize
             'Value question 5',
             'Language',
             'Feedback',
+            'Status',
+            'URL',
             'Created At',
+            'Updtaed At',
         ];
     }
 }

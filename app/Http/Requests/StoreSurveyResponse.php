@@ -30,7 +30,7 @@ class StoreSurveyResponse extends FormRequest
             'rating3'  => 'required|integer',
             'rating4'  => 'required|integer',
             'quality'  => 'required',
-            'feedback' => 'required|min:5',
+            'feedback' => 'nullable|string',
         ];
     }
 
@@ -47,7 +47,6 @@ class StoreSurveyResponse extends FormRequest
             'rating3.required'  => Lang::get('survey.rating3_error'),
             'rating4.required'  => Lang::get('survey.rating4_error'),
             'quality.required'  => Lang::get('survey.quality_error'),
-            'feedback.required' => Lang::get('survey.feedback_error'),
         ];
     }
 }

@@ -21,10 +21,10 @@ class CreateResultsTable extends Migration
             $table->integer('question2')->nullable();
             $table->integer('question3')->nullable();
             $table->integer('question4')->nullable();
-            $table->boolean('question5')->nullable();
+            $table->string('question5')->default(Result::SURVEY_STATUS_FALSE)->nullable();
             $table->string('language')->nullable();
             $table->text('feedback')->nullable();
-            $table->boolean('status')->default(Result::STATUS_INCOMPLETE)->nullable();
+            $table->string('status')->default(Result::SURVEY_STATUS_CREATED)->nullable();
             $table->string('url')->nullable();
             $table->timestamps();
         });

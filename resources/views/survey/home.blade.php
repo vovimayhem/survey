@@ -185,35 +185,41 @@
         updatePost1(event) {
           axios.put('http://127.0.0.1:8000/api/results/' + this.rootUrl, {
             value_question1: event.target.value,
+            status: 'Incomplete',
           })
         },
 
         updatePost2(event) {
           axios.put('http://127.0.0.1:8000/api/results/' + this.rootUrl, {
             value_question2: event.target.value,
+            status: 'Incomplete',
           })
         },
 
         updatePost3(event) {
           axios.put('http://127.0.0.1:8000/api/results/' + this.rootUrl, {
             value_question3: event.target.value,
+            status: 'Incomplete',
           })
         },
 
         updatePost4(event) {
           axios.put('http://127.0.0.1:8000/api/results/' + this.rootUrl, {
             value_question4: event.target.value,
+            status: 'Incomplete',
           })
         },
 
         isBack(event) {
           if( event.target.value === 'Absolutely' ) {
             axios.put('http://127.0.0.1:8000/api/results/' + this.rootUrl, {
-              value_question5: '1',
+              value_question5: 'True',
+              status: 'Incomplete',
             })
           } else {
             axios.put('http://127.0.0.1:8000/api/results/' + this.rootUrl, {
-              value_question5: '0',
+              value_question5: 'False',
+              status: 'Incomplete',
             })
           }
         },
@@ -221,6 +227,7 @@
         feed(event) {
           axios.put('http://127.0.0.1:8000/api/results/' + this.rootUrl, {
             feedback: event.target.value,
+            status: 'Incomplete',
           })
         },
 

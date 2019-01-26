@@ -9,9 +9,12 @@ class Result extends Model
 {
     public $transformer = ResultTransformer::class;
 
-    const STATUS_INCOMPLETE = false;    
-    const STATUS_COMPLETED  = true;
+    const SURVEY_STATUS_CREATED    = 'Created';    
+    const SURVEY_STATUS_COMPLETED  = 'Completed';
+    const SURVEY_STATUS_INCOMPLETE = 'Incomplete';
 
+    const SURVEY_STATUS_FALSE = 'False';
+    const SURVEY_STATUS_TRUE = 'True';
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +22,6 @@ class Result extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 
         'case_number', 
         'question1', 
         'question2', 
@@ -29,7 +31,9 @@ class Result extends Model
         'language', 
         'feedback',
         'status',
+        'url',
         'created_at',
+        'updtaed_at',
     ];
 
     /**
@@ -37,5 +41,5 @@ class Result extends Model
      *
      * @var array
      */
-    protected $hidden = [];
+    protected $hidden = ['id'];
 }

@@ -7,11 +7,11 @@
 			<div class="box-body">
 				<div class="form-group">
 					Filters:
-					<a href="/?filter=en">English</a> |
-					<a href="/?filter=es">Spanish</a> |
-					<a href="/?filter=newest">Newest</a> |
-					<a href="/?filter=oldest">Oldest</a> |
-					<a href="/">Clear</a> |
+					<a href="/admin?filter=en">English</a> |
+					<a href="/admin?filter=es">Spanish</a> |
+					<a href="/admin?filter=newest">Newest</a> |
+					<a href="/admin?filter=oldest">Oldest</a> |
+					<a href="/admin">Clear</a> |
 				</div>
 
 				<div class="form-group">
@@ -55,10 +55,10 @@
 								<td>{{$result->question3}}</td>
 								<td>{{$result->question4}}</td>
 
-								@if($result->question5 == true)
-								<td>true</td>
+								@if($result->question5 == 'True')
+								<td>True</td>
 								@else
-								<td>false</td>
+								<td>False</td>
 								@endif
 
 								@if($result->language == 'es')
@@ -67,14 +67,8 @@
 								<td>English</td>
 								@endif
 
-								<td>{{$result->feedback}}</td>
-
-								@if($result->status == '1')
-								<td>Completed</td>
-								@else
-								<td>Incomplete</td>
-								@endif
-
+								<td>{{ $result->feedback }}</td>
+								<td>{{ $result->status }}</td>
 								<td>{{ $result->created_at->format('F d, Y') }}</td>
 								<td>{{ $result->updated_at->format('F d, Y') }}</td>
 							</tr>

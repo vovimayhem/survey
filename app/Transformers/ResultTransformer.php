@@ -17,10 +17,10 @@ class ResultTransformer extends TransformerAbstract
             'value_question2' => (integer) $result->question2,
             'value_question3' => (integer) $result->question3,
             'value_question4' => (integer) $result->question4,
-            'value_question5' => ($result->question5 === 'true'),
+            'value_question5' => (string)  $result->question5,
             'lang'            => (string)  $result->language,
             'feedback'        => (string)  $result->feedback,
-            'status'          => ($result->status === 'true'),
+            'status'          => (string)  $result->status,
             'created'         => (string)  $result->created_at,
             'last_updated'    => (string)  $result->updated_at,
         ];
