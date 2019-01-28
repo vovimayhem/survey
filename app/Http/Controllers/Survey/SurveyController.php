@@ -84,9 +84,7 @@ class SurveyController extends Controller
     $result->status = Result::SURVEY_STATUS_COMPLETED;
     $result->save();
     
-    Notification::route('mail', 'anhernandez@communitytax.com')->notify(new SurveyCompleted($result));
-    Notification::route('mail', 'jdayan@communitytax.com')->notify(new SurveyCompleted($result));
-    Notification::route('mail', 'jseaman@communitytax.com')->notify(new SurveyCompleted($result));
+    Notification::route('mail', 'ccs@communitytax.com')->notify(new SurveyCompleted($result));
 
     return redirect()->route('thanks', [$lang, $case]);
   }
