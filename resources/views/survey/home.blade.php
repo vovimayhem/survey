@@ -9,7 +9,7 @@
 
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>{{ config('app.name', 'CommunityTax') }}</title>
+  <title>Community Tax Survey</title>
 
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <!-- <link rel="stylesheet" type="text/css" href="css/starability-all.min.css"> -->
