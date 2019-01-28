@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Survey;
 
 use App\Models\Result;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Lang;
 use App\Notifications\SurveyCompleted;
@@ -30,6 +31,17 @@ class SurveyController extends Controller
 
       $result = Result::where('case_number', $case)->get()->first();
 
+      $url = null;
+      $lang = null;
+
+      if( $lang === 'en') {
+        $url = URL::to('/') . '/welcome/en/case/' . $case_param;
+        $lang = 'en';
+      } else {
+        $url = URL::to('/') . '/welcome/es/case/' . $case_param;
+        $lang = 'es';
+      }
+
       if( empty($result) ) {
         $result = new Result();
         $result->case_number = $case;
@@ -41,6 +53,7 @@ class SurveyController extends Controller
         $result->language    = $lang;
         $result->feedback    = null;
         $result->status      = Result::SURVEY_STATUS_CREATED;
+        $result->url = $url;
         $result->save();
       }
       return view('survey.home', compact('case_param', 'result'));
