@@ -20,7 +20,7 @@ class SurveyController extends Controller
     public function __construct()
     {
       $this->middleware('survey.completed', ['except' => ['show_thanks_view']] );
-      $this->middleware('valid.survey');
+      //$this->middleware('valid.survey');
     }
 
     public function show_survey_view($lang, $case)
@@ -86,6 +86,7 @@ class SurveyController extends Controller
     
     Notification::route('mail', 'anhernandez@communitytax.com')->notify(new SurveyCompleted($result));
     Notification::route('mail', 'jdayan@communitytax.com')->notify(new SurveyCompleted($result));
+    Notification::route('mail', 'jseaman@communitytax.com')->notify(new SurveyCompleted($result));
 
     return redirect()->route('thanks', [$lang, $case]);
   }
