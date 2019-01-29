@@ -29,6 +29,6 @@ return [
     'incomplete1'       => 'You have',
     'incomplete2_single' => 'unanswered question. Please complete all the questions before continuing.',
     'incomplete2_more'   => 'unanswered questions. Please complete all the questions before continuing',
-    '410'                => 'The request failed because the resource associated with the request has been deleted.',
+    '410'                => 'Thank you, but you have already completed this survey, so this link is no longer available.',
     '404'                => 'The requested resource could not be found but may be available in the future.',
 ];

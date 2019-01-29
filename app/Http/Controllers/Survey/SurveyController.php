@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Lang;
 use App\Notifications\SurveyCompleted;
+use App\Notifications\BadCustomerReview;
 use App\Http\Requests\StoreSurveyResponse;
 use Illuminate\Support\Facades\Notification;
 
@@ -75,29 +76,38 @@ class SurveyController extends Controller
 
     public function store(StoreSurveyResponse $request, $lang, $case)
     {
+      $notifiable = false;
 
-     $validated = $request->validated();
+      $validated = $request->validated();
 
-     $result = Result::where('case_number', $case)->get()->first();
-     $result->question1 = $request->get('rating1');
-     $result->question2 = $request->get('rating2');
-     $result->question3 = $request->get('rating3');
-     $result->question4 = $request->get('rating4');
+      $result = Result::where('case_number', $case)->get()->first();
+      $result->question1 = $request->get('rating1');
+      $result->question2 = $request->get('rating2');
+      $result->question3 = $request->get('rating3');
+      $result->question4 = $request->get('rating4');
 
-     $quality = $request->get('quality');
+      $quality = $request->get('quality');
 
-     if( $quality == 'Absolutely' ) {
-      $result->question5 = Result::SURVEY_STATUS_TRUE;
-    } else {
-      $result->question5 = Result::SURVEY_STATUS_FALSE;
+      if( $quality == 'Absolutely' ) {
+        $result->question5 = Result::SURVEY_STATUS_TRUE;
+      } else {
+        $result->question5 = Result::SURVEY_STATUS_FALSE;
+      }
+
+      $result->language = $lang;
+      $result->feedback = $request->get('feedback');
+      $result->status = Result::SURVEY_STATUS_COMPLETED;
+      $result->save();
+
+      if($request->get('rating1') <= 3 || $request->get('rating2')  <= 3 || 
+       $request->get('rating3') <= 3 ||  $request->get('rating4') <= 3 || 
+       $this->checkPoorReviews($feedback)) {
+        $notifiable = true;
     }
 
-    $result->language = $lang;
-    $result->feedback = $request->get('feedback');
-    $result->status = Result::SURVEY_STATUS_COMPLETED;
-    $result->save();
-    
-    //Notification::route('mail', 'ccs@communitytax.com')->notify(new SurveyCompleted($result));
+    if($notifiable) {
+      Notification::route('mail', 'anhernandez@communitytax.com')->notify(new BadCustomerReview($result));
+    }
 
     return redirect()->route('thanks', [$lang, $case]);
   }

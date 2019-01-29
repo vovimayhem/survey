@@ -19,3 +19,32 @@ Route::get('admin/result/show/{id}', 'Admin\DashboardController@show');
 Route::get('admin/result/export', 'Admin\DashboardController@exportExcel')->name('export');
 Route::get('admin/result/search', 'Admin\DashboardController@search')->name('search');
 Route::post('admin/logout','Auth\LoginController@logout')->name('user.logout');
+
+Route::get('chemo', function() {
+	$blacklistArray = array(
+		'BBB',
+		'Attorney General', 
+		'Complaint', 
+		'Refund', 
+		'Frustrating', 
+		'Rude', 
+		'Upset', 
+		'Scam', 
+		'Liar', 
+		'Theft', 
+		'Steal',
+	);
+
+	$string = 'Community Tax wasexperience, they RUDE my money and the liar me';
+	$matches = array();
+	$matchFound = preg_match_all("/\b(" . implode($blacklistArray,"|") . ")\b/i", $string, $matches);
+	dd($matchFound);
+	// if it find matches bad words
+	if ($matchFound) {
+		$words = array_unique($matches[0]);
+		foreach($words as $word) {
+		//show bad words found
+			dd($word);
+		}
+	}
+});

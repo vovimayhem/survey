@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class SurveyCompleted extends Notification
+class BadCustomerReview extends Notification
 {
     use Queueable;
 
@@ -50,12 +50,11 @@ class SurveyCompleted extends Notification
     {
         $url = url('admin/result/show/' . $this->result->id);
 
-        return (new MailMessage)
-        ->greeting('Hello, there!')
-        ->line('We detect that a survey has been successfully completed. To visualize the results please click on the below button.')
-        ->line('Case #: ' . $this->result->case_number)
-        ->action('View Results', $url)
-        ->line('Thank you for using our Community Tax Survey application!');
+        return (new MailMessage)->view('emails.bad_review', [
+            'case_number' => $this->result->case_number,
+            'url' => $url,
+        ]
+    );
     }
 
     /**
