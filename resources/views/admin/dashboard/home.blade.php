@@ -28,7 +28,13 @@
 			</div>
 			
 			<div class="card">
-				<div class="card-header">Survey results</div>
+				<div class="card-header">
+					<div class="card-header">
+						<div class="text-center">
+							<h3>Survey results</h3>
+						</div>
+					</div>
+				</div>
 				<div class="card-body">
 					<table class="table table-striped">
 						<thead>
@@ -79,5 +85,8 @@
 			</div>
 		</div>
 	</div>
+</div>
+<div class="row justify-content-center">
+	{!! $results->appends(Request::except('page'))->render() !!}
 </div>
 @endsection

@@ -32,10 +32,10 @@ class SurveyController extends Controller
 
       $result = Result::where('case_number', $case)->get()->first();
 
+      $base_url = URL::to('/');
       $url = null;
-      $lang = null;
-
-      if( $lang === 'en') {
+      
+      if( $lang == 'en') {
         $url = URL::to('/') . '/welcome/en/case/' . $case_param;
         $lang = 'en';
       } else {
@@ -57,7 +57,7 @@ class SurveyController extends Controller
         $result->url = $url;
         $result->save();
       }
-      return view('survey.home', compact('case_param', 'result'));
+      return view('survey.home', compact('case_param', 'result', 'base_url'));
     }
 
     public function show_welcome_view($lang, $case)
@@ -101,10 +101,29 @@ class SurveyController extends Controller
 
       if($request->get('rating1') <= 3 || $request->get('rating2')  <= 3 || 
        $request->get('rating3') <= 3 ||  $request->get('rating4') <= 3 || 
-       $this->checkPoorReviews($feedback)) {
-        Notification::route('mail', 'anhernandez@communitytax.com')->notify(new BadCustomerReview($result));
+       $this->checkPoorReviews($request->get('feedback'))) {
+        Notification::route('mail', 'ccs@communitytax.com')->notify(new BadCustomerReview($result));
     }
 
     return redirect()->route('thanks', [$lang, $case]);
+  }
+
+  private function checkPoorReviews($feedback) {
+    $blacklistArray = array(
+      'BBB',
+      'Attorney General', 
+      'Complaint', 
+      'Refund', 
+      'Frustrating', 
+      'Rude', 
+      'Upset', 
+      'Scam', 
+      'Liar', 
+      'Theft', 
+      'Steal',
+    );
+    $matches = array();
+    $matchFound = preg_match_all("/\b(" . implode($blacklistArray,"|") . ")\b/i", $feedback, $matches);
+    return $matchFound ? true: false;
   }
 }

@@ -19,7 +19,7 @@ class DashboardController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['show']] );
     }
     
     /**
@@ -32,27 +32,27 @@ class DashboardController extends Controller
         $filter = $request->input('filter');
 
         if(empty($filter)) {
-            $results = Result::orderBy('case_number')->paginate(20);
+            $results = Result::orderBy('case_number')->paginate(15);
             return view('admin.dashboard.home', compact('results'));
         } else {
             switch ($filter) {
                 case 'en':
-                $results = Result::orderBy('case_number')->where('language', 'en')->paginate(20);
+                $results = Result::orderBy('case_number')->where('language', 'en')->paginate(15);
                 return view('admin.dashboard.home', compact('results'));
                 break;
 
                 case 'es':
-                $results = Result::orderBy('case_number')->where('language', 'es')->paginate(20);
+                $results = Result::orderBy('case_number')->where('language', 'es')->paginate(15);
                 return view('admin.dashboard.home', compact('results'));
                 break;
 
                 case 'newest':
-                $results = Result::orderBy('case_number', 'DESC')->paginate(20);
+                $results = Result::orderBy('case_number', 'DESC')->paginate(15);
                 return view('admin.dashboard.home', compact('results'));
                 break;
 
                 case 'oldest':
-                $results = Result::orderBy('case_number', 'ASC')->paginate(20);
+                $results = Result::orderBy('case_number', 'ASC')->paginate(15);
                 return view('admin.dashboard.home', compact('results'));
                 break;
             }
@@ -81,9 +81,9 @@ class DashboardController extends Controller
 
         $url = null;
         $case = $request->get('case_number');
-        $lang = null;
+        $lang = $request->get('lang');
 
-        if( $request->get('lang') === '1') {
+        if( $request->get('lang') == '1') {
             $url = URL::to('/') . '/welcome/en/case/' . $case;
             $lang = 'en';
         } else {
@@ -104,7 +104,7 @@ class DashboardController extends Controller
         $result->url = $url;
         $result->save();
 
-        $results = Result::orderBy('case_number')->paginate(20);
+        $results = Result::orderBy('case_number')->paginate(15);
 
         return view('admin.dashboard.home', compact('results'));
     }

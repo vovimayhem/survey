@@ -59,7 +59,7 @@ class Handler extends ExceptionHandler
 
         if($exception instanceof ModelNotFoundException) {
             $modelo = strtolower(class_basename($exception->getModel()));
-            return $this->errorResponse("No existe ninguna instancia de {$modelo} con ese id especificado", 404);
+            return $this->errorResponse('There is no { $modelo } instance with that specified id.', 404);
         }
 
         if($exception instanceof AuthenticationException) {
@@ -67,17 +67,17 @@ class Handler extends ExceptionHandler
         }
 
         if($exception instanceof AuthorizationException) {
-            return $this->errorResponse('No posee permisos para ejecutar esta accion', 403);
+            return $this->errorResponse('You do not have permission to execute this action.', 403);
         }
 
         if($exception instanceof NotFoundHttpException) {
             if ($request->is('api/*')) {
-                return $this->errorResponse('No se encontro la url especificada', 404);
+                return $this->errorResponse('The specified url was not found', 404);
             }
         }
 
         if($exception instanceof MethodNotAllowedHttpException) {
-            return $this->errorResponse('El metodo especificado en la peticion no es valido', 405);
+            return $this->errorResponse('The method specified in the request is not valid', 405);
         }
 
         if($exception instanceof HttpException) {
@@ -88,7 +88,7 @@ class Handler extends ExceptionHandler
             $codigo = $exception->errorInfo[1];
 
             if($codigo == 1451) {
-                return $this->errorResponse('No se puede eliminar de forma permanente el recurso porque esta relacionado con algun otro', 409);
+                return $this->errorResponse('The resource can not be permanently deleted because it is related to someone else', 409);
             }
         }
 
@@ -96,7 +96,7 @@ class Handler extends ExceptionHandler
             return parent::render($request, $exception);
         }
 
-        return $this->errorResponse('Falla inesperada. Intente luego', 500);
+        return $this->errorResponse('Unexpected failure Try then', 500);
     }
 
     /**
@@ -113,7 +113,7 @@ class Handler extends ExceptionHandler
             return redirect()->guest('login');
         }
 
-        return $this->errorResponse('No autenticado', 401);
+        return $this->errorResponse('Not authenticated', 401);
     }
     
 

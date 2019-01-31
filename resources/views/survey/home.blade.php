@@ -177,34 +177,35 @@
       el: "#app",
 
       data: {
-        rootUrl: '{{ $result->id }}',
+        baseUrl: '{{ $base_url }}',
+        id:      '{{ $result->id }}',
       },
 
       methods: {
 
         updatePost1(event) {
-          axios.put('http://ctax-survey.herokuapp.com/api/results/' + this.rootUrl, {
+          axios.put(this.baseUrl + '/api/results/' + this.id, {
             value_question1: event.target.value,
             status: 'Incomplete',
           })
         },
 
         updatePost2(event) {
-          axios.put('http://ctax-survey.herokuapp.com/api/results/' + this.rootUrl, {
+          axios.put(this.baseUrl + '/api/results/' + this.id, {
             value_question2: event.target.value,
             status: 'Incomplete',
           })
         },
 
         updatePost3(event) {
-          axios.put('http://ctax-survey.herokuapp.com/api/results/' + this.rootUrl, {
+          axios.put(this.baseUrl + '/api/results/' + this.id, {
             value_question3: event.target.value,
             status: 'Incomplete',
           })
         },
 
         updatePost4(event) {
-          axios.put('http://ctax-survey.herokuapp.com/api/results/' + this.rootUrl, {
+          axios.put(this.baseUrl + '/api/results/' + this.id, {
             value_question4: event.target.value,
             status: 'Incomplete',
           })
@@ -212,12 +213,12 @@
 
         isBack(event) {
           if( event.target.value === 'Absolutely' ) {
-            axios.put('http://ctax-survey.herokuapp.com/api/results/' + this.rootUrl, {
+            axios.put(this.baseUrl + '/api/results/' + this.id, {
               value_question5: 'True',
               status: 'Incomplete',
             })
           } else {
-            axios.put('http://ctax-survey.herokuapp.com/api/results/' + this.rootUrl, {
+            axios.put(this.baseUrl + '/api/results/' + this.id, {
               value_question5: 'False',
               status: 'Incomplete',
             })
@@ -225,15 +226,14 @@
         },
 
         feed(event) {
-          axios.put('http://ctax-survey.herokuapp.com/api/results/' + this.rootUrl, {
-            feedback: event.target.value,
-            status: 'Incomplete',
-          })
-        },
-
-      }
-    })
-  </script>
-  <!-- /.content -->
+         axios.put(this.baseUrl + '/api/results/' + this.id, {
+          feedback: event.target.value,
+          status: 'Incomplete',
+        })
+       },
+     }
+   })
+ </script>
+ <!-- /.content -->
 </body>
 </html>
