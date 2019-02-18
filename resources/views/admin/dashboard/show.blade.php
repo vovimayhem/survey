@@ -10,7 +10,7 @@
 			<div class="card">
 				<div class="card-header">
 					<div class="text-center">
-						<h3>Customer Review</h3>
+						<h3>Customer Review - Case #: {{ $result->case_number }}</h3>
 					</div>
 				</div>
 				<div class="card-body">
@@ -76,7 +76,6 @@
 									<div class="col-md-8 my-5 py-5">
 										<h3>Feedback</h3>
 										<p>{{ $result->feedback }}</p>
-										<a href="{{ $result->url }}">{{ $result->url }}</a>
 									</div>
 								</div>
 							</div>
@@ -87,8 +86,6 @@
 		</div>
 	</div>
 </div>
-
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 @endsection

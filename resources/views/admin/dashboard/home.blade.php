@@ -87,6 +87,8 @@
 	</div>
 </div>
 <div class="row justify-content-center">
+	@if($results->count() > 1)
 	{!! $results->appends(Request::except('page'))->render() !!}
+	@endif
 </div>
 @endsection

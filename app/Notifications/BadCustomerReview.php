@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use App\Models\Result;
 use Illuminate\Bus\Queueable;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -48,15 +49,14 @@ class BadCustomerReview extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = url('admin/result/show/' . $this->result->id);
-
+        $url = URL::to('/') . '/admin/result/show/' . $this->result->id;
+        
         return (new MailMessage)->view('emails.bad_review', [
             'case_number' => $this->result->case_number,
             'url' => $url,
-        ]
-    );
+        ]);
     }
-
+    
     /**
      * Get the array representation of the notification.
      *
