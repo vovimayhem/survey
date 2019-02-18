@@ -10,12 +10,31 @@
 |
 */
 Auth::routes(['register' => false]);
+
+Route::prefix('admin')->group(function () {
+	//Home
+	Route::resource('/', 'Admin\DashboardController', ['except' => ['destroy']]);
+
+	//Roles
+	Route::resource('roles', 'Roles\RoleController', ['except' => ['show']]);
+
+	//Users
+	Route::resource('users', 'Users\UserController', ['except' => ['show']]);
+	
+	//Show a single result element
+	Route::get('result/show/{id}', 'Admin\DashboardController@show');
+
+	//Export data to cvs
+	Route::get('result/export', 'Admin\DashboardController@exportExcel')->name('export');
+
+	//Search case #
+	Route::get('result/search', 'Admin\DashboardController@search')->name('search');
+
+	//Custom Logout
+	Route::post('logout','Auth\LoginController@logout')->name('user.logout');
+});
+
 Route::get('survey/{lang}/case/{case}', 'Survey\SurveyController@show_survey_view')->name('survey');
 Route::get('welcome/{lang}/case/{case}', 'Survey\SurveyController@show_welcome_view')->name('welcome');
 Route::get('thanks/{lang}/case/{case}', 'Survey\SurveyController@show_thanks_view')->name('thanks');
 Route::post('survey/submit/{lang}/{case}', 'Survey\SurveyController@store')->name('submit');
-Route::resource('admin/', 'Admin\DashboardController', ['except' => ['destroy']]);
-Route::get('admin/result/show/{id}', 'Admin\DashboardController@show');
-Route::get('admin/result/export', 'Admin\DashboardController@exportExcel')->name('export');
-Route::get('admin/result/search', 'Admin\DashboardController@search')->name('search');
-Route::post('admin/logout','Auth\LoginController@logout')->name('user.logout');
