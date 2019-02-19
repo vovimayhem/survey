@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'survey.completed' => \App\Http\Middleware\SurveyCompleted::class,
         'valid.survey' => \App\Http\Middleware\ValidSurvey::class,
         'transform.input' => \App\Http\Middleware\TransformInput::class,
+        'isAdmin' => \App\Http\Middleware\AdminMiddleware::class,
     ];
 
     /**

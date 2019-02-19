@@ -8,6 +8,10 @@ use App\Http\Controllers\Controller;
 
 class RoleController extends Controller
 {
+    public function __construct() {
+        $this->middleware(['auth', 'isAdmin']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -45,7 +49,7 @@ class RoleController extends Controller
         $role->name = $name;
         $role->save();
 
-        return redirect('admin/roles');
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -69,7 +73,13 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, ['name'=>'required|unique:roles,name,'.$id]);
+        
+        $role = Role::findOrFail($id);
+        $role->name = $request->input('name');
+        $role->save();
+
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -80,6 +90,9 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $role->delete();
+
+        return redirect()->route('roles.index');
     }
 }

@@ -41,7 +41,7 @@
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
-                            
+
                         </li>
                         @else
                         <li class="nav-item dropdown">
@@ -50,10 +50,13 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url('admin') }}">Home</a>
+                                @if(Auth::user()->roles->first()->name === 'Administrator')
+                                <a class="dropdown-item" href="{{ route('users.index') }}">Users</a>
+                                <a class="dropdown-item" href="{{ route('roles.index') }}">Roles</a>
+                                @endif
                                 <a class="dropdown-item" href="{{ url('/admin/create') }}">URL Builder</a>
                                 <a class="dropdown-item" href="{{ route('export') }}">Export Data</a>
-                                
-                                
                                 <a class="dropdown-item" href="{{ route('user.logout') }}"
                                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">

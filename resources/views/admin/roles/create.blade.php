@@ -29,8 +29,8 @@
 
 						<div class="form-group">
 							<div class="text-right">
-								<button type="submit" class="btn btn-success">Create Role</button>
-								<a href="{{ url('admin/roles') }}" class="btn btn-danger">Cancel</a>
+								<button type="submit" class="btn btn-outline-success btn-sm">Create Role</button>
+								<a href="{{ url('admin/roles') }}" class="btn btn-outline-danger btn-sm">Cancel</a>
 							</div>
 						</div>
 					</form>

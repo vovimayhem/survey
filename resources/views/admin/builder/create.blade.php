@@ -41,8 +41,8 @@
 
 						<div class="form-group">
 							<div class="text-right">
-								<button type="submit" class="btn btn-success">Generate</button>
-								<a href="{{ url('/admin') }}" class="btn btn-danger">Cancel</a>
+								<button type="submit" class="btn btn-outline-success btn-sm">Generate</button>
+								<a href="{{ url('/admin') }}" class="btn btn-outline-danger btn-sm">Cancel</a>
 							</div>
 						</div>
 					</form>
