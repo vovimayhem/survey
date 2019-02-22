@@ -1,6 +1,4 @@
 <?php
-
-use App\Models\Result;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +40,10 @@ Route::get('welcome/{lang}/case/{case}', 'Survey\SurveyController@show_welcome_v
 Route::get('thanks/{lang}/case/{case}', 'Survey\SurveyController@show_thanks_view')->name('thanks');
 Route::post('survey/submit/{lang}/{case}', 'Survey\SurveyController@store')->name('submit');
 
-Route::get('test', function() {
-	return view('hola');
+
+Route::get('test', 'Admin\DashboardController@test')->name('test');
+
+Route::get('chemo', function() {
+	return view('test');
 });
+

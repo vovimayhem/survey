@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
+use Laracasts\Utilities\JavaScript\JavaScriptFacade;
 
 class DashboardController extends Controller
 {
@@ -20,6 +21,17 @@ class DashboardController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['show']] );
+    }
+
+    public function test() {
+        JavaScriptFacade::put(
+            [
+                'foo' => 'bar',
+                'user' => 'Anselmo',
+                'age' => 29
+            ]);
+
+        return view('hola');
     }
     
     /**
