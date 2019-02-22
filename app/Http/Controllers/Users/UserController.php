@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Notifications\WelcomeToSurveyAdminPortal;
 
 class UserController extends Controller
 {
@@ -66,6 +67,9 @@ class UserController extends Controller
             $user->roles()->detach();
         } 
 
+        //Send notification to the new user
+        $user->notify(new WelcomeToSurveyAdminPortal($request->get('password')));
+        
         return redirect()->route('users.index');
     }
 
