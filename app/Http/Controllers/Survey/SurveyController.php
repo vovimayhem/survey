@@ -21,7 +21,7 @@ class SurveyController extends Controller
      */
     public function __construct()
     {
-      $this->middleware('survey.completed', ['except' => ['show_thanks_view']] );
+      $this->middleware('survey.completed', ['except' => ['show_thanks_view', 'show_dummy_survey']] );
       //$this->middleware('valid.survey');
     }
 
@@ -58,6 +58,13 @@ class SurveyController extends Controller
         $result->save();
       }
       return view('survey.home', compact('case_param', 'result', 'base_url'));
+    }
+
+    public function show_dummy_survey($lang, $case)
+    {
+      $result = Result::where('case_number', $case)->first();
+      App::setlocale($lang);
+      return view('survey.dummy_survey', compact('result'));
     }
 
     public function show_welcome_view($lang, $case)
@@ -102,7 +109,7 @@ class SurveyController extends Controller
       if($request->get('rating1') <= 3 || $request->get('rating2')  <= 3 || 
        $request->get('rating3') <= 3 ||  $request->get('rating4') <= 3 || 
        $this->checkPoorReviews($request->get('feedback'))) {
-        Notification::route('mail', 'ccs@communitytax.com')->notify(new BadCustomerReview($result));
+        //Notification::route('mail', 'ccs@communitytax.com')->notify(new BadCustomerReview($result));
     }
 
     return redirect()->route('thanks', [$lang, $case]);

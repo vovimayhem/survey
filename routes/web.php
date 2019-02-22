@@ -1,4 +1,6 @@
 <?php
+
+use App\Models\Result;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +37,7 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('survey/{lang}/case/{case}', 'Survey\SurveyController@show_survey_view')->name('survey');
+Route::get('survey/{lang}/case/{case}/show', 'Survey\SurveyController@show_dummy_survey')->name('dummy.survey');
 Route::get('welcome/{lang}/case/{case}', 'Survey\SurveyController@show_welcome_view')->name('welcome');
 Route::get('thanks/{lang}/case/{case}', 'Survey\SurveyController@show_thanks_view')->name('thanks');
 Route::post('survey/submit/{lang}/{case}', 'Survey\SurveyController@store')->name('submit');
