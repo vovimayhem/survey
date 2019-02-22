@@ -47,8 +47,8 @@ class UserController extends Controller
         $this->validate($request, [
             'name'                  => 'required|max:120',
             'email'                 => 'required|email|unique:users',  
-            'password'              => 'nullable|required_with:password_confirmation|same:password_confirmation|min:8',   
-            'password_confirmation' => 'nullable|required_with:password|min:8',  
+            'password'              => 'required_with:password_confirmation|same:password_confirmation|min:8',   
+            'password_confirmation' => 'required_with:password|min:8',  
             'select_role'           => 'required|integer',  
         ]);
 
@@ -98,8 +98,8 @@ class UserController extends Controller
         $this->validate($request, [
             'name'                  => 'required|max:120',
             'email'                 => 'required|email',  
-            'password'              => 'nullable|required_with:password_confirmation|same:password_confirmation|min:8',   
-            'password_confirmation' => 'nullable|required_with:password|min:8',  
+            'password'              => 'required_with:password_confirmation|same:password_confirmation|min:8',   
+            'password_confirmation' => 'required_with:password|min:8',  
             'select_role'           => 'required|integer',  
         ]);
 
