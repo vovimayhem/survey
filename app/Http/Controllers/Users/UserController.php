@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Notifications\WelcomeToSurveyAdminPortal;
 
 class UserController extends Controller
 {
@@ -46,8 +47,8 @@ class UserController extends Controller
         $this->validate($request, [
             'name'                  => 'required|max:120',
             'email'                 => 'required|email|unique:users',  
-            'password'              => 'nullable|required_with:password_confirmation|same:password_confirmation|min:8',   
-            'password_confirmation' => 'nullable|required_with:password|min:8',  
+            'password'              => 'required_with:password_confirmation|same:password_confirmation|min:8',   
+            'password_confirmation' => 'required_with:password|min:8',  
             'select_role'           => 'required|integer',  
         ]);
 
@@ -64,14 +65,18 @@ class UserController extends Controller
         }        
         else {
             $user->roles()->detach();
-        } 
-
+        }
+      
+      //Send notification to the new user
+      $user->notify(new WelcomeToSurveyAdminPortal($request->get('password')));
+      
         $notification = array(
             'message' => 'The user has been created successfully!', 
             'alert-type' => 'success'
         );
 
         return redirect()->route('users.index')->with($notification);
+
     }
 
     /**
@@ -99,8 +104,8 @@ class UserController extends Controller
         $this->validate($request, [
             'name'                  => 'required|max:120',
             'email'                 => 'required|email',  
-            'password'              => 'nullable|required_with:password_confirmation|same:password_confirmation|min:8',   
-            'password_confirmation' => 'nullable|required_with:password|min:8',  
+            'password'              => 'required_with:password_confirmation|same:password_confirmation|min:8',   
+            'password_confirmation' => 'required_with:password|min:8',  
             'select_role'           => 'required|integer',  
         ]);
 
