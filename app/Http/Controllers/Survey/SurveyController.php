@@ -109,7 +109,7 @@ class SurveyController extends Controller
       if($request->get('rating1') <= 3 || $request->get('rating2')  <= 3 || 
        $request->get('rating3') <= 3 ||  $request->get('rating4') <= 3 || 
        $this->checkPoorReviews($request->get('feedback'))) {
-        //Notification::route('mail', 'ccs@communitytax.com')->notify(new BadCustomerReview($result));
+        Notification::route('mail', 'ccs@communitytax.com')->notify(new BadCustomerReview($result));
     }
 
     return redirect()->route('thanks', [$lang, $case]);
