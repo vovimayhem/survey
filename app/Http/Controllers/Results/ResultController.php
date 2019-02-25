@@ -4,12 +4,7 @@ namespace App\Http\Controllers\Results;
 
 use App\Models\Result;
 use Illuminate\Http\Request;
-use App\Exports\ResultExport;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
-use Maatwebsite\Excel\Facades\Excel;
-use Laracasts\Utilities\JavaScript\JavaScriptFacade;
 
 class ResultController extends Controller
 {
@@ -20,7 +15,7 @@ class ResultController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth', ['except' => ['show']] );
+        $this->middleware('auth');
     }
     
     /**

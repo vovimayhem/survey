@@ -1,6 +1,4 @@
 <?php
-
-use App\Models\Result;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,15 +24,9 @@ Route::prefix('admin')->group(function () {
 	//Users
 	Route::resource('users', 'Users\UserController', ['except' => ['show']]);
 
-	//Show a single result element
-	Route::get('result/show/{id}', 'Admin\DashboardController@show');
-
 	//Export data to cvs
-	Route::get('result/export', 'Admin\DashboardController@exportExcel')->name('export');
+	Route::get('result/export', 'Export\ExportController@exportExcel')->name('export');
 
-	//Search case #
-	Route::get('result/search', 'Admin\DashboardController@search')->name('search');
-	
 	//Custom Logout
 	Route::post('logout','Auth\LoginController@logout')->name('user.logout');
 });

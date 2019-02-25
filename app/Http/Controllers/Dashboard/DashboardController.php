@@ -5,12 +5,8 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\User;
 use App\Models\Result;
 use Illuminate\Http\Request;
-use App\Exports\ResultExport;
-use Illuminate\Support\Carbon;
 use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
-use Maatwebsite\Excel\Facades\Excel;
 use Laracasts\Utilities\JavaScript\JavaScriptFacade;
 
 class DashboardController extends Controller
@@ -22,7 +18,7 @@ class DashboardController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth', ['except' => ['show']] );
+        $this->middleware('auth');
     }
     
     /**
