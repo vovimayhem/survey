@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Survey;
 
 use App\Models\Result;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
@@ -108,9 +109,13 @@ class SurveyController extends Controller
 
       if($request->get('rating1') <= 3 || $request->get('rating2')  <= 3 || 
        $request->get('rating3') <= 3 ||  $request->get('rating4') <= 3 || 
-       $this->checkPoorReviews($request->get('feedback'))) {
+       $this->checkPoorReviews($request->get('feedback'))) 
+      {
         Notification::route('mail', 'ccs@communitytax.com')->notify(new BadCustomerReview($result));
-    }
+        $this->sendEmailFromApi($case, 'negative'); //Negative Review
+      } else {
+        $this->sendEmailFromApi($case, 'positive'); //Positive Review
+      }
 
     return redirect()->route('thanks', [$lang, $case]);
   }
@@ -132,5 +137,10 @@ class SurveyController extends Controller
     $matches = array();
     $matchFound = preg_match_all("/\b(" . implode($blacklistArray,"|") . ")\b/i", $feedback, $matches);
     return $matchFound ? true: false;
+  }
+
+  private function sendEmailFromApi($case, $status) {
+    $client = new Client(['headers' => ['ns-token' => 'AAAAUf62Amk']]);
+    $response = $client->request('GET', 'https://www.ctaxalert.com/survey-api?caseid=' . $case . '&customer_response=' . $status);
   }
 }

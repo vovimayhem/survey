@@ -38,7 +38,7 @@ class DashboardController extends Controller
             'incomplete' => $num_incomplete
         ]);
 
-        $results = Result::orderBy('updated_at', 'DESC')->paginate(15);
+        $results = Result::where('status', '!=', 'Created')->orderBy('updated_at', 'DESC')->paginate(15);
 
         $surveys = Result::all()->count();
         $roles   = Role::all()->count();
