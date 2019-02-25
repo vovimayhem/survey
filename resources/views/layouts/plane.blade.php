@@ -8,8 +8,9 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<title>{{ config('app.name', 'Laravel') }}</title>
-	<script src="{{ asset('js/jquery.js') }}" defer></script>
-	<link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+	
+	<script src="{{ asset('js/jquery.js') }}"></script>
+
 	<link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/metisMenu.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet">
@@ -19,10 +20,8 @@
 </head>
 <body>
 	@yield('body')
-	<script src="{{ asset('js/bootstrap.js') }}" defer></script>
-	<script src="{{ asset('js/Chart.js') }}" defer></script>
-	<script src="{{ asset('js/frontend.js') }}" defer></script>
-	<script src="{{ asset('js/metisMenu.js') }}" defer></script>
-	<script src="{{ asset('js/sb-admin-2.js') }}" defer></script>
+	<script src="{{ asset('js/bootstrap.js') }}"></script>
+	<script src="{{ asset('js/metisMenu.js') }}"></script>
+	<script src="{{ asset('js/sb-admin-2.js') }}"></script>
 </body>
 </html>

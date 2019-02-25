@@ -26,6 +26,8 @@ var lineChartData = {
 
 }
 
+//---
+
 
     var cline = document.getElementById("cline").getContext("2d");
     new Chart(cline).Line(lineChartData, {
@@ -53,6 +55,9 @@ var lineChartData = {
         label: "Yellow"
     }
 ]
+
+//---
+
 var cpie = document.getElementById("cpie").getContext("2d");
 new Chart(cpie).Pie(pdata, { responsive: true});
 
@@ -76,6 +81,9 @@ var ddata = [
         label: "Yellow"
     }
 ]
+
+//------
+
 var cdonut = document.getElementById("cdonut").getContext("2d");
 new Chart(cdonut).Doughnut(ddata, { responsive: true});
 
@@ -99,6 +107,8 @@ var bdata = {
         ]
 
     }
+
+//----
     var cbar = document.getElementById("cbar").getContext("2d");
     new Chart(cbar).Bar(bdata, {
             responsive : true
@@ -138,6 +148,8 @@ var bdata = {
 
 ]
 
+
+//------
 var cpolar = document.getElementById("cpolar").getContext("2d");
 new Chart(cpolar).PolarArea(podata, { responsive: true});
 

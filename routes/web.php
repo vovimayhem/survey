@@ -1,4 +1,6 @@
 <?php
+
+use App\Models\Result;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,15 +14,18 @@
 Auth::routes(['register' => false]);
 
 Route::prefix('admin')->group(function () {
-	//Home
-	Route::resource('/', 'Admin\DashboardController', ['except' => ['destroy']]);
+	//Dashboard
+	Route::resource('/', 'Dashboard\DashboardController', ['only' => ['index']]);
+
+	//Surveys
+	Route::resource('surveys', 'Results\ResultController', ['only' => ['index','show']]);
 
 	//Roles
 	Route::resource('roles', 'Roles\RoleController', ['except' => ['show']]);
 
 	//Users
 	Route::resource('users', 'Users\UserController', ['except' => ['show']]);
-	
+
 	//Show a single result element
 	Route::get('result/show/{id}', 'Admin\DashboardController@show');
 
@@ -29,7 +34,7 @@ Route::prefix('admin')->group(function () {
 
 	//Search case #
 	Route::get('result/search', 'Admin\DashboardController@search')->name('search');
-
+	
 	//Custom Logout
 	Route::post('logout','Auth\LoginController@logout')->name('user.logout');
 });
@@ -39,11 +44,3 @@ Route::get('survey/{lang}/case/{case}/show', 'Survey\SurveyController@show_dummy
 Route::get('welcome/{lang}/case/{case}', 'Survey\SurveyController@show_welcome_view')->name('welcome');
 Route::get('thanks/{lang}/case/{case}', 'Survey\SurveyController@show_thanks_view')->name('thanks');
 Route::post('survey/submit/{lang}/{case}', 'Survey\SurveyController@store')->name('submit');
-
-
-Route::get('test', 'Admin\DashboardController@test')->name('test');
-
-Route::get('chemo', function() {
-	return view('test');
-});
-
