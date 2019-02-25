@@ -13,7 +13,7 @@ Auth::routes(['register' => false]);
 
 Route::prefix('admin')->group(function () {
 	//Dashboard
-	Route::resource('/', 'Dashboard\DashboardController', ['only' => ['index']]);
+	Route::get('/', 'Dashboard\DashboardController@index')->name('dashboard');
 
 	//Surveys
 	Route::resource('surveys', 'Results\ResultController', ['only' => ['index','show']]);

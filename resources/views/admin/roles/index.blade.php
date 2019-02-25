@@ -45,7 +45,9 @@
 		</tbody>
 	</table>
 </div>
-<div class="row justify-content-center">
-	{{ $roles->appends(Request::except('page'))->render() }}
+<div class="text-center">
+	@if($roles->count() > 1)
+	{!! $roles->appends(Request::except('page'))->render() !!}
+	@endif
 </div>
 @stop

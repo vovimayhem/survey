@@ -39,7 +39,7 @@
 
                     <div class="wrap-input100 validate-input m-b-18">
                         <span class="label-input100">Password</span>
-                        <input class="input100 {{ $errors->has('password') ? ' is-invalid' : '' }}" type="password" name="password" placeholder="Enter username" value="{{ old('password') }}" required autofocus>
+                        <input class="input100 {{ $errors->has('password') ? ' is-invalid' : '' }}" type="password" name="password" required autofocus>
                         @if ($errors->has('password'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('password') }}</strong>

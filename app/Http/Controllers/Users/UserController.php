@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller
 {
     public function __construct() {
-        $this->middleware(['auth', 'isAdmin']);
+        $this->middleware(['auth', 'isAdmin', 'preventBackHistory']);
     }
 
     /**
@@ -66,7 +66,12 @@ class UserController extends Controller
             $user->roles()->detach();
         } 
 
-        return redirect()->route('users.index');
+        $notification = array(
+            'message' => 'The user has been created successfully!', 
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('users.index')->with($notification);
     }
 
     /**
@@ -118,7 +123,12 @@ class UserController extends Controller
             $user->roles()->detach();
         } 
 
-        return redirect()->route('users.index');
+        $notification = array(
+            'message' => 'The user has been edited successfully!', 
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('users.index')->with($notification);
     }
 
     /**

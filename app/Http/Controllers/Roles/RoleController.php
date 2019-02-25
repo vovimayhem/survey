@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 class RoleController extends Controller
 {
     public function __construct() {
-        $this->middleware(['auth', 'isAdmin']);
+        $this->middleware(['auth', 'isAdmin', 'preventBackHistory']);
     }
 
     /**
@@ -49,7 +49,12 @@ class RoleController extends Controller
         $role->name = $name;
         $role->save();
 
-        return redirect()->route('roles.index');
+        $notification = array(
+            'message' => 'The role has been created successfully!', 
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('roles.index')->with($notification);
     }
 
     /**
@@ -79,7 +84,12 @@ class RoleController extends Controller
         $role->name = $request->input('name');
         $role->save();
 
-        return redirect()->route('roles.index');
+        $notification = array(
+            'message' => 'The role has been edited successfully!', 
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('roles.index')->with($notification);
     }
 
     /**

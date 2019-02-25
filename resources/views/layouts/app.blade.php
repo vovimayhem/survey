@@ -65,6 +65,8 @@
                     <a href="{{ route ('surveys.index') }}"><i class="fa fa-bar-chart-o fa-fw"></i>Surveys</a>
                     <!-- /.nav-second-level -->
                 </li>
+                
+                @role('Administrator')
                 <li>
                     <a href="#"><i class="fa fa-gears fa-fw"></i>Administration<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -77,6 +79,7 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                @endrole
             </ul>
         </div>
         <!-- /.sidebar-collapse -->
@@ -85,7 +88,7 @@
 </nav>
 
 <div id="page-wrapper">
-   <div class="row">
+ <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">@yield('page_heading')</h1>
     </div>

@@ -48,7 +48,7 @@
 	</div>
 </div> 
 <div class="form-group">
-	<div class="text-left">
+	<div class="text-center">
 		{{ $users->appends(Request::except('page'))->render() }}
 	</div>  
 </div>   
