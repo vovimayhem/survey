@@ -50,7 +50,7 @@ class SurveyController extends Controller
         $result->question2   = 0;
         $result->question3   = 0;
         $result->question4   = 0;
-        $result->question5   = Result::SURVEY_STATUS_FALSE;
+        $result->question5   = null;
         $result->language    = $lang;
         $result->feedback    = null;
         $result->status      = Result::SURVEY_STATUS_CREATED;

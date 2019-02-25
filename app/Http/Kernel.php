@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'valid.survey' => \App\Http\Middleware\ValidSurvey::class,
         'transform.input' => \App\Http\Middleware\TransformInput::class,
         'isAdmin' => \App\Http\Middleware\AdminMiddleware::class,
+        'preventBackHistory' => \App\Http\Middleware\PreventBackHistory::class,
     ];
 
     /**

@@ -12,23 +12,20 @@
 Auth::routes(['register' => false]);
 
 Route::prefix('admin')->group(function () {
-	//Home
-	Route::resource('/', 'Admin\DashboardController', ['except' => ['destroy']]);
+	//Dashboard
+	Route::get('/', 'Dashboard\DashboardController@index')->name('dashboard');
+
+	//Surveys
+	Route::resource('surveys', 'Results\ResultController', ['only' => ['index','show']]);
 
 	//Roles
 	Route::resource('roles', 'Roles\RoleController', ['except' => ['show']]);
 
 	//Users
 	Route::resource('users', 'Users\UserController', ['except' => ['show']]);
-	
-	//Show a single result element
-	Route::get('result/show/{id}', 'Admin\DashboardController@show');
 
 	//Export data to cvs
-	Route::get('result/export', 'Admin\DashboardController@exportExcel')->name('export');
-
-	//Search case #
-	Route::get('result/search', 'Admin\DashboardController@search')->name('search');
+	Route::get('result/export', 'Export\ExportController@exportExcel')->name('export');
 
 	//Custom Logout
 	Route::post('logout','Auth\LoginController@logout')->name('user.logout');

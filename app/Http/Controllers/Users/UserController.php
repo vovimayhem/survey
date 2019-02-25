@@ -11,7 +11,7 @@ use App\Notifications\WelcomeToSurveyAdminPortal;
 class UserController extends Controller
 {
     public function __construct() {
-        $this->middleware(['auth', 'isAdmin']);
+        $this->middleware(['auth', 'isAdmin', 'preventBackHistory']);
     }
 
     /**
@@ -65,12 +65,18 @@ class UserController extends Controller
         }        
         else {
             $user->roles()->detach();
-        } 
+        }
+      
+      //Send notification to the new user
+      $user->notify(new WelcomeToSurveyAdminPortal($request->get('password')));
+      
+        $notification = array(
+            'message' => 'The user has been created successfully!', 
+            'alert-type' => 'success'
+        );
 
-        //Send notification to the new user
-        $user->notify(new WelcomeToSurveyAdminPortal($request->get('password')));
-        
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with($notification);
+
     }
 
     /**
@@ -122,7 +128,12 @@ class UserController extends Controller
             $user->roles()->detach();
         } 
 
-        return redirect()->route('users.index');
+        $notification = array(
+            'message' => 'The user has been edited successfully!', 
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('users.index')->with($notification);
     }
 
     /**
