@@ -16,6 +16,9 @@ class Result extends Model
     const SURVEY_STATUS_FALSE = 'False';
     const SURVEY_STATUS_TRUE = 'True';
 
+    const SURVEY_REVIEW_POSITIVE = 'positive';
+    const SURVEY_REVIEW_NEGATIVE = 'negative';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -30,6 +33,8 @@ class Result extends Model
         'question5', 
         'language', 
         'feedback',
+        'survey_status',
+        'survey_review',
         'status',
         'url',
         'created_at',

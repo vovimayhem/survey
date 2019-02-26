@@ -141,15 +141,15 @@
 							</td>
 
 							<td>
-								@if( $result->status === 'Created')
+								@if( $result->survey_status === 'Created')
 								<span class="badge badge-primary">Created</span>
 								@endif
 
-								@if( $result->status === 'Completed')
+								@if( $result->survey_status === 'Completed')
 								<span class="badge badge-success">Completed</span>
 								@endif
 
-								@if( $result->status === 'Incomplete')
+								@if( $result->survey_status === 'Incomplete')
 								<span class="badge badge-warning">Incomplete</span>
 								@endif
 							</td>
@@ -184,6 +184,26 @@
 			</script>
 			@endsection
 			@include('widgets.panel', array('header'=>true, 'as'=>'panel1'))
+
+			@section ('panel4_panel_title', 'Rating Chart')
+			@section ('panel4_panel_body')
+
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+			<canvas id="myChart2" width="400" height="345"></canvas>
+			<script>
+				new Chart(document.getElementById("myChart2"),
+				{
+					"type":"pie",
+					"data": { "labels": [ "Positive", "Negative" ],
+					"datasets":[ 
+					{ 
+						"data": [ positives, negatives ],
+						"backgroundColor": [ "rgb(92,184,92)", "rgba(255, 10, 10, 1)" ] 
+					}]}
+				});
+			</script>
+			@endsection
+			@include('widgets.panel', array('header'=>true, 'as'=>'panel4'))
 
 			@section ('pane1_panel_title', 'Notes Panel')
 			@section ('pane1_panel_body')

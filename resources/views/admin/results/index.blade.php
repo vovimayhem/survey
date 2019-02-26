@@ -87,15 +87,15 @@
 				</td>
 
 				<td>
-					@if( $result->status === 'Created')
+					@if( $result->survey_status === 'Created')
 					<span class="badge badge-primary">Created</span>
 					@endif
 
-					@if( $result->status === 'Completed')
+					@if( $result->survey_status === 'Completed')
 					<span class="badge badge-success">Completed</span>
 					@endif
 
-					@if( $result->status === 'Incomplete')
+					@if( $result->survey_status === 'Incomplete')
 					<span class="badge badge-warning">Incomplete</span>
 					@endif
 				</td>

@@ -25,7 +25,7 @@ class ResultController extends Controller
      */
     public function index(Request $request)
     {
-        $results = Result::where('status', '!=', 'Created')->orderBy('updated_at', 'DESC')->paginate(15);
+        $results = Result::where('survey_status', '!=', 'Created')->orderBy('updated_at', 'DESC')->paginate(15);
         return view('admin.results.index', compact('results'));
     }
     
