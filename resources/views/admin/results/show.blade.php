@@ -6,7 +6,7 @@
 		<h3>Customer Review - Case #: {{ $result->case_number }}</h3>
 	</div>
 </div>
-@if( $result->status === 'Created')
+@if( $result->survey_status === 'Created')
 <div class="alert alert-info" role="alert">
 	<div class="text-center">
 		Status: Survey Created!
@@ -14,7 +14,7 @@
 </div>
 @endif
 
-@if( $result->status === 'Incomplete')
+@if( $result->survey_status === 'Incomplete')
 <div class="alert alert-warning" role="alert">
 	<div class="text-center">
 		Status: Survey Incomplete!
@@ -22,7 +22,7 @@
 </div>
 @endif
 
-@if( $result->status === 'Completed')
+@if( $result->survey_status === 'Completed')
 <div class="alert alert-success" role="alert">
 	<div class="text-center">
 		Status: Survey Completed!
