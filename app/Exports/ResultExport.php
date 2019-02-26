@@ -28,6 +28,8 @@ class ResultExport implements FromCollection, WithHeadings, ShouldAutoSize
             'Value question 5',
             'Language',
             'Feedback',
+            'Survey Status',
+            'Survey Review',
             'Status',
             'URL',
             'Created At',

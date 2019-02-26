@@ -46,15 +46,17 @@ class SurveyController extends Controller
 
       if( empty($result) ) {
         $result = new Result();
-        $result->case_number = $case;
-        $result->question1   = 0;
-        $result->question2   = 0;
-        $result->question3   = 0;
-        $result->question4   = 0;
-        $result->question5   = null;
-        $result->language    = $lang;
-        $result->feedback    = null;
-        $result->status      = Result::SURVEY_STATUS_CREATED;
+        $result->case_number   = $case;
+        $result->question1     = 0;
+        $result->question2     = 0;
+        $result->question3     = 0;
+        $result->question4     = 0;
+        $result->question5     = null;
+        $result->language      = $lang;
+        $result->feedback      = null;
+        $result->survey_status = Result::SURVEY_STATUS_CREATED;
+        $result->survey_review = null;
+        $result->status        = null;
         $result->url = $url;
         $result->save();
       }
@@ -104,20 +106,24 @@ class SurveyController extends Controller
 
       $result->language = $lang;
       $result->feedback = $request->get('feedback');
-      $result->status = Result::SURVEY_STATUS_COMPLETED;
+      $result->survey_status = Result::SURVEY_STATUS_COMPLETED;
       $result->save();
 
       if($request->get('rating1') <= 3 || $request->get('rating2')  <= 3 || 
        $request->get('rating3') <= 3 ||  $request->get('rating4') <= 3 || 
        $this->checkPoorReviews($request->get('feedback'))) 
       {
-        Notification::route('mail', 'ccs@communitytax.com')->notify(new BadCustomerReview($result));
+        Notification::route('mail', 'anhernandez@communitytax.com')->notify(new BadCustomerReview($result));
         $this->sendEmailFromApi($case, 'negative'); //Negative Review
+        $result->survey_review = Result::SURVEY_REVIEW_NEGATIVE;
       } else {
         $this->sendEmailFromApi($case, 'positive'); //Positive Review
+        $result->survey_review = Result::SURVEY_REVIEW_POSITIVE;
       }
 
-    return redirect()->route('thanks', [$lang, $case]);
+      $result->save();
+
+      return redirect()->route('thanks', [$lang, $case]);
   }
 
   private function checkPoorReviews($feedback) {
