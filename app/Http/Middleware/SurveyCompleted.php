@@ -17,7 +17,7 @@ class SurveyCompleted
     public function handle($request, Closure $next)
     {
         $case_id = $request->route()->parameter('case');
-        $result = Result::where('case_number', $case_id)->where('status', Result::SURVEY_STATUS_COMPLETED)->get();
+        $result = Result::where('case_number', $case_id)->where('survey_status', Result::SURVEY_STATUS_COMPLETED)->get();
         if ( !$result->isEmpty() ) {
             abort('410');
         }
