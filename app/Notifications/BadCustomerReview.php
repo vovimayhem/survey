@@ -49,7 +49,7 @@ class BadCustomerReview extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = URL::to('/') . '/admin/result/show/' . $this->result->id;
+        $url = URL::to('/') . '/admin/surveys/' . $this->result->id;
         
         return (new MailMessage)->view('emails.bad_review', [
             'case_number' => $this->result->case_number,
