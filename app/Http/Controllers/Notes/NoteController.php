@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Notes;
 
 use App\Models\Note;
+use App\Models\Result;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -117,6 +118,13 @@ class NoteController extends Controller
     {
         $notes = Note::where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->paginate(15);
         return view('admin.notes.my_notes', compact('notes'));
+    }
+
+    public function showAllNotesFromCase($id)
+    {
+        $notes = Note::where('result_id', $id)->orderBy('updated_at', 'DESC')->paginate(15);
+        $result = Result::find($id);
+        return view('admin.notes.show_all_notes', compact('notes', 'result'));
     }
 
     public function editMyNote(Note $note)

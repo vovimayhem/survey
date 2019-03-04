@@ -33,6 +33,7 @@ Route::prefix('admin')->group(function () {
 	Route::get('notes/mynotes', 'Notes\NoteController@myNotes')->name('notes.mynotes');
 	Route::get('notes/{note}/edit/mynote', 'Notes\NoteController@editMyNote')->name('notes.edit.mynote');
 	Route::put('notes/{note}/mynote', 'Notes\NoteController@updateMyNote')->name('notes.update.mynote');
+	Route::get('notes/survey/{id}', 'Notes\NoteController@showAllNotesFromCase')->name('notes.show.all');
 
 	//Roles
 	Route::resource('roles', 'Roles\RoleController', ['except' => ['show']]);

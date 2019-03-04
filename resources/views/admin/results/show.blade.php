@@ -161,7 +161,7 @@
 	</div> 
 
 	@if(!$notes->isEmpty())
-	<a href="#" class="btn btn-default btn-block">View All Notes</a>
+	<a href="{{ route('notes.show.all', $result->id) }}" class="btn btn-default btn-block">View All Notes</a>
 	@endif
 
 	<!-- /.panel-body -->
@@ -169,9 +169,8 @@
 	@include('widgets.panel', array('header'=>true, 'as'=>'pane1'))
 </div>
 
-
 <!-- Modal Dialog -->
-<div class="modal fade" id="noteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="noteModal" tabindex="-1" role="dialog" ara-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<form method="POST" action="{{ url('admin/notes') }}">
 			@csrf

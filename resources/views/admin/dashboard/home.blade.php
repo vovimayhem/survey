@@ -218,12 +218,6 @@
 				</a>
 				@endforeach
 			</div>
-			
-			<!-- /.list-group -->
-			<a href="{{ route('notes.index') }}" class="btn btn-default btn-block">View All Notes</a>
-			
-			<!-- /.panel-body -->
-			
 			@endsection
 			@include('widgets.panel', array('header'=>true, 'as'=>'pane1'))
 		</div>

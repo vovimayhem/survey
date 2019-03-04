@@ -64,14 +64,34 @@
                 <li {{ (Request::is('*surveys') ? 'class="active"' : '') }}>
                     <a href="{{ route ('surveys.index') }}"><i class="fa fa-bar-chart-o fa-fw"></i>Surveys</a>
                 </li>
+
+                <!-- I dont have this role -->
+                @unlessrole('Administrator')
                 <li {{ (Request::is('*notes') ? 'class="active"' : '') }}>
                     <a href="{{ route ('notes.mynotes') }}"><i class="fa fa-edit fa-fw"></i>My Notes</a>
                 </li>
-                
+                @endunlessrole
+
                 @role('Administrator')
                 <li>
                     <a href="#"><i class="fa fa-gears fa-fw"></i>Administration<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
+                        <li {{ (Request::is('/admin') ? 'class="active"' : '') }}>
+                            <a href="{{ route ('users.index') }}"><i class="fa fa-dashboard fa-fw"></i>Users</a>
+                        </li>
+
+                        <li {{ (Request::is('/admin') ? 'class="active"' : '') }}>
+                            <a href="{{ route ('roles.index') }}"><i class="fa fa-dashboard fa-fw"></i>Roles</a>
+                        </li>
+
+                        <li {{ (Request::is('/admin') ? 'class="active"' : '') }}>
+                            <a href="{{ route ('notes.index') }}"><i class="fa fa-dashboard fa-fw"></i>Notes</a>
+                        </li>
+
+                        <li {{ (Request::is('/admin') ? 'class="active"' : '') }}>
+                            <a href="{{ route ('notes.mynotes') }}"><i class="fa fa-dashboard fa-fw"></i>My Notes</a>
+                        </li>
+
                         <li {{ (Request::is('*users') ? 'class="active"' : '') }}>
                             <a href="{{ route ('users.index') }}">Users</a>
                         </li>
@@ -80,6 +100,9 @@
                         </li>
                         <li {{ (Request::is('*notes') ? 'class="active"' : '') }}>
                             <a href="{{ route ('notes.index') }}">Notes</a>
+                        </li>
+                        <li {{ (Request::is('*notes') ? 'class="active"' : '') }}>
+                            <a href="{{ route ('notes.mynotes') }}">My Notes</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -93,7 +116,7 @@
 </nav>
 
 <div id="page-wrapper">
- <div class="row">
+   <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">@yield('page_heading')</h1>
     </div>

@@ -2,6 +2,10 @@
 @section('page_heading','My Notes')
 @section('section')
 <link href="{{ asset('css/badge.css') }}" rel="stylesheet" type="text/css">
+<style>
+ table { table-layout: fixed; }
+ table th, table td { overflow: hidden; word-wrap: break-word; }
+</style>
 <div class="col-md-12">
 	<div class="table-responsive">
 		<table class="table table-striped">
@@ -21,11 +25,7 @@
 						<a href="{{ route('surveys.show', $note->result_id) }}">{{ $note->result->case_number }}</a>
 					</td>
 
-					<td>
-						<div>
-							{{ $note->comment }}
-						</div>
-					</td>
+					<td>{{ $note->comment }}</td>
 
 					<td><span class="badge badge-light">{{ $note->created_at->format('F d, Y') }}</span></td>
 					<td><span class="badge badge-light">{{ $note->updated_at->format('F d, Y') }}</span></td>
