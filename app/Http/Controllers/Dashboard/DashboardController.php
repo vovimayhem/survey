@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Models\Note;
 use App\Models\User;
 use App\Models\Result;
 use Illuminate\Http\Request;
@@ -45,10 +46,12 @@ class DashboardController extends Controller
 
         $results = Result::where('survey_status', '!=', 'Created')->orderBy('updated_at', 'DESC')->paginate(15);
 
-        $surveys = Result::all()->count();
-        $roles   = Role::all()->count();
-        $users   = User::all()->count();
+        $surveys    = Result::all()->count();
+        $roles      = Role::all()->count();
+        $users      = User::all()->count();
+        $notes      = Note::all()->count();
+        $note_items = Note::orderBy('created_at', 'DESC')->get()->take(10);
 
-        return view('admin.dashboard.home', compact('results', 'surveys', 'roles', 'users'));
+        return view('admin.dashboard.home', compact('results', 'surveys', 'roles', 'users', 'notes', 'note_items'));
     }
 }

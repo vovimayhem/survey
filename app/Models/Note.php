@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\User;
+use App\Models\Result;
 use Illuminate\Database\Eloquent\Model;
 
 class Note extends Model
@@ -15,13 +17,14 @@ class Note extends Model
         'id', 
         'user_id', 
         'result_id', 
-        'comment', 
+        'comment' 
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    //protected $hidden = ['id'];
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function result() {
+        return $this->belongsTo(Result::class);
+    }
 }

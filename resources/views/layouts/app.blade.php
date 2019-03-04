@@ -63,7 +63,9 @@
                 </li>
                 <li {{ (Request::is('*surveys') ? 'class="active"' : '') }}>
                     <a href="{{ route ('surveys.index') }}"><i class="fa fa-bar-chart-o fa-fw"></i>Surveys</a>
-                    <!-- /.nav-second-level -->
+                </li>
+                <li {{ (Request::is('*notes') ? 'class="active"' : '') }}>
+                    <a href="{{ route ('notes.mynotes') }}"><i class="fa fa-edit fa-fw"></i>My Notes</a>
                 </li>
                 
                 @role('Administrator')
@@ -75,6 +77,9 @@
                         </li>
                         <li {{ (Request::is('*roles') ? 'class="active"' : '') }}>
                             <a href="{{ route ('roles.index') }}">Roles</a>
+                        </li>
+                        <li {{ (Request::is('*notes') ? 'class="active"' : '') }}>
+                            <a href="{{ route ('notes.index') }}">Notes</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

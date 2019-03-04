@@ -46,10 +46,10 @@
 			</tbody>
 		</table>
 	</div>
-</div> 
-<div class="form-group">
-	<div class="text-center">
-		{{ $users->appends(Request::except('page'))->render() }}
-	</div>  
-</div>   
+	<div class="form-group">
+		<div class="text-center">
+			{{ $users->appends(Request::except('page'))->render() }}
+		</div>  
+	</div>   
+</div>
 @stop

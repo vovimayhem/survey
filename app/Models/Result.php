@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Note;
 use App\Transformers\ResultTransformer;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,6 +26,7 @@ class Result extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
         'case_number', 
         'question1', 
         'question2', 
@@ -38,13 +40,10 @@ class Result extends Model
         'status',
         'url',
         'created_at',
-        'updtaed_at',
+        'updated_at'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = ['id'];
+    public function notes() {
+        return $this->hasMany(Note::class, 'result_id', 'id');
+    }
 }
