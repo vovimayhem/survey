@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Results;
 
+use App\Models\Note;
 use App\Models\Result;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -38,6 +39,7 @@ class ResultController extends Controller
     public function show($id)
     {
         $result = Result::find($id);
-        return view('admin.results.show', compact('result'));
+        $notes = Result::find($id)->notes->sortByDesc('updated_at')->take(9);
+        return view('admin.results.show', compact('result', 'notes'));
     }
 }

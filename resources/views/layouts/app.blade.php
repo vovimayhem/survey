@@ -63,18 +63,33 @@
                 </li>
                 <li {{ (Request::is('*surveys') ? 'class="active"' : '') }}>
                     <a href="{{ route ('surveys.index') }}"><i class="fa fa-bar-chart-o fa-fw"></i>Surveys</a>
-                    <!-- /.nav-second-level -->
                 </li>
-                
+
+                <!-- I dont have this role -->
+                @unlessrole('Administrator')
+                <li {{ (Request::is('*notes') ? 'class="active"' : '') }}>
+                    <a href="{{ route ('notes.mynotes') }}"><i class="fa fa-edit fa-fw"></i>My Notes</a>
+                </li>
+                @endunlessrole
+
                 @role('Administrator')
                 <li>
                     <a href="#"><i class="fa fa-gears fa-fw"></i>Administration<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li {{ (Request::is('*users') ? 'class="active"' : '') }}>
-                            <a href="{{ route ('users.index') }}">Users</a>
+                        <li {{ (Request::is('/admin') ? 'class="active"' : '') }}>
+                            <a href="{{ route ('users.index') }}"><i class="fa fa-users fa-fw"></i>Users</a>
                         </li>
-                        <li {{ (Request::is('*roles') ? 'class="active"' : '') }}>
-                            <a href="{{ route ('roles.index') }}">Roles</a>
+
+                        <li {{ (Request::is('/admin') ? 'class="active"' : '') }}>
+                            <a href="{{ route ('roles.index') }}"><i class="fa fa-gears fa-fw"></i>Roles</a>
+                        </li>
+
+                        <li {{ (Request::is('/admin') ? 'class="active"' : '') }}>
+                            <a href="{{ route ('notes.index') }}"><i class="fa fa-edit fa-fw"></i>Notes</a>
+                        </li>
+
+                        <li {{ (Request::is('/admin') ? 'class="active"' : '') }}>
+                            <a href="{{ route ('notes.mynotes') }}"><i class="fa fa-edit fa-fw"></i>My Notes</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

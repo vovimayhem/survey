@@ -66,17 +66,16 @@ class UserController extends Controller
         else {
             $user->roles()->detach();
         }
-      
-      //Send notification to the new user
-      $user->notify(new WelcomeToSurveyAdminPortal($request->get('password')));
-      
+
+        //Send notification to the new user
+        $user->notify(new WelcomeToSurveyAdminPortal($request->get('password')));
+
         $notification = array(
             'message' => 'The user has been created successfully!', 
             'alert-type' => 'success'
         );
 
         return redirect()->route('users.index')->with($notification);
-
     }
 
     /**

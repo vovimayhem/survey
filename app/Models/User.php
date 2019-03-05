@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Note;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -18,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'id', 'name', 'email', 'password',
     ];
 
     /**
@@ -32,5 +33,9 @@ class User extends Authenticatable
 
     public function setPasswordAttribute($password) {   
         $this->attributes['password'] = bcrypt($password);
+    }
+
+    public function notes() {
+        return $this->hasMany(Note::class, 'user_id', 'id');
     }
 }

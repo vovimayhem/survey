@@ -1,4 +1,8 @@
 <?php
+
+use App\Models\Note;
+use App\Models\User;
+use App\Models\Result;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +21,19 @@ Route::prefix('admin')->group(function () {
 
 	//Surveys
 	Route::resource('surveys', 'Results\ResultController', ['only' => ['index','show']]);
+
+	//Note routes only for admin role
+	Route::get('notes', 'Notes\NoteController@index')->name('notes.index');
+	Route::post('notes', 'Notes\NoteController@store')->name('notes.store');
+	Route::delete('notes/{note}', 'Notes\NoteController@destroy')->name('notes.destroy');
+	Route::put('notes/{note}', 'Notes\NoteController@update')->name('notes.update');
+	Route::get('notes/{note}/edit', 'Notes\NoteController@edit')->name('notes.edit');
+
+	//Note routes for everyone with auth access
+	Route::get('notes/mynotes', 'Notes\NoteController@myNotes')->name('notes.mynotes');
+	Route::get('notes/{note}/edit/mynote', 'Notes\NoteController@editMyNote')->name('notes.edit.mynote');
+	Route::put('notes/{note}/mynote', 'Notes\NoteController@updateMyNote')->name('notes.update.mynote');
+	Route::get('notes/survey/{id}', 'Notes\NoteController@showAllNotesFromCase')->name('notes.show.all');
 
 	//Roles
 	Route::resource('roles', 'Roles\RoleController', ['except' => ['show']]);

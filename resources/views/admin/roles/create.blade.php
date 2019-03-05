@@ -1,30 +1,32 @@
 @extends('layouts.app')
 @section('page_heading','Create Role')
 @section('section')
-@if ($errors->any())
-<div class="alert alert-danger">
-	<ul>
-		@foreach ($errors->all() as $error)
-		<li>{{ $error }}</li>
-		@endforeach
-	</ul>
-</div>
-@endif
-<form method="POST" action="{{ url('admin/roles') }}">
-	@csrf
-	<div class="form-group">
-		<label class="form-label" for="field-1">Role Name</label>
-		<span class="desc"></span>
-		<div class="controls">
-			<input type="text" class="form-control" name="name">
-		</div>
+<div class="col-md-12">
+	@if ($errors->any())
+	<div class="alert alert-danger">
+		<ul>
+			@foreach ($errors->all() as $error)
+			<li>{{ $error }}</li>
+			@endforeach
+		</ul>
 	</div>
+	@endif
+	<form method="POST" action="{{ url('admin/roles') }}">
+		@csrf
+		<div class="form-group">
+			<label class="form-label" for="field-1">Role Name</label>
+			<span class="desc"></span>
+			<div class="controls">
+				<input type="text" class="form-control" name="name">
+			</div>
+		</div>
 
-	<div class="form-group">
-		<div class="text-right">
-			@include('widgets.button_submit', array('class'=>'success btn-outline', 'size'=>'sm', 'value'=>'Create Role'))
-			@include('widgets.button', array('href'=>"/admin/roles", 'class'=>'danger btn-outline', 'size'=>'sm', 'value'=>'Cancel'))
+		<div class="form-group">
+			<div class="text-right">
+				@include('widgets.button_submit', array('class'=>'success btn-outline', 'size'=>'sm', 'value'=>'Create Role'))
+				@include('widgets.button', array('href'=>"/admin/roles", 'class'=>'danger btn-outline', 'size'=>'sm', 'value'=>'Cancel'))
+			</div>
 		</div>
-	</div>
-</form>
+	</form>
+</div>
 @stop
