@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Note;
+use App\Models\Reminder;
 use App\Transformers\ResultTransformer;
 use Illuminate\Database\Eloquent\Model;
 
@@ -45,5 +46,9 @@ class Result extends Model
 
     public function notes() {
         return $this->hasMany(Note::class, 'result_id', 'id');
+    }
+
+    public function reminders() {
+        return $this->hasMany(Reminder::class, 'result_id', 'id');
     }
 }

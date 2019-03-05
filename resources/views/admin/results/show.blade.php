@@ -35,6 +35,10 @@
 		</div>
 	</div>
 	@endif
+	
+	<div class="text-right">
+		<a href="" data-toggle="modal" data-target="#emailModal">0 Email Notifications sent it</a>
+	</div>
 
 	<div class="text-center">
 		<div class="col-md-4">
@@ -125,6 +129,9 @@
 					<p>
 						<a href="https://ctr.logics.com/Cases/Case.aspx?CaseID={{ $result->case_number }}">Open case in Logics</a>
 					</p>
+					<p>
+						<a href="" data-toggle="modal" data-target="#emailModal">Send Email Notification</a>
+					</p>
 				</div>
 			</div>
 		</div>
@@ -169,12 +176,12 @@
 	@include('widgets.panel', array('header'=>true, 'as'=>'pane1'))
 </div>
 
-<!-- Modal Dialog -->
+<!-- Create Note Dialog -->
 <div class="modal fade" id="noteModal" tabindex="-1" role="dialog" ara-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
-		<form method="POST" action="{{ url('admin/notes') }}">
-			@csrf
-			<div class="modal-content">
+		<div class="modal-content">
+			<form method="POST" action="{{ url('admin/notes') }}">
+				@csrf
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">New Note</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -193,6 +200,38 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 					<button type="submit" class="btn btn-primary">Save Note</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Send Email Notification Dialog -->
+<div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<form method="POST" action="{{ url('admin/reminders') }}">
+				@csrf
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">New Email Reminder</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="message-text" class="col-form-label">Message:</label>
+						<textarea class="form-control" id="message-text" name="message" rows="9" cols="50" style="resize: none;"></textarea>
+
+						<input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
+						<input type="hidden" name="result_id" value="{{ $result->id }}" />
+						<input type="hidden" name="case_number" value="{{ $result->case_number }}" />
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Send Email</button>
 				</div>
 			</form>
 		</div>
