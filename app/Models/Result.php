@@ -27,7 +27,6 @@ class Result extends Model
      * @var array
      */
     protected $fillable = [
-        'id',
         'case_number', 
         'question1', 
         'question2', 
@@ -42,6 +41,15 @@ class Result extends Model
         'url',
         'created_at',
         'updated_at'
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'id'
     ];
 
     public function notes() {
