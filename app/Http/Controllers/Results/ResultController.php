@@ -40,6 +40,7 @@ class ResultController extends Controller
     {
         $result = Result::find($id);
         $notes = Result::find($id)->notes->sortByDesc('updated_at')->take(9);
-        return view('admin.results.show', compact('result', 'notes'));
+        $remainders = Result::find($id)->reminders;
+        return view('admin.results.show', compact('result', 'notes', 'remainders'));
     }
 }

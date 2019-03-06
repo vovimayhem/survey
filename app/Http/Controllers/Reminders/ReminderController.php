@@ -29,7 +29,8 @@ class ReminderController extends Controller
      */
     public function index()
     {
-        //
+        $reminders = Reminder::orderBy('created_at', 'DESC')->paginate(15);
+        return view('admin.reminders.index', compact('reminders'));
     }
 
     /**
@@ -46,33 +47,40 @@ class ReminderController extends Controller
             'message'   => 'required'
         ]);
 
-        $reminder = new Reminder();
-        $reminder->user_id   = $request->get('user_id');
-        $reminder->result_id = $request->get('result_id');
-        $reminder->message   = $request->get('message');
-        $reminder->save();
-
-        $notification = array(
+        $notificationOK = array(
             'message' => 'The email has been sent it successfully!', 
             'alert-type' => 'success'
         );
 
-        //Http client
-        $client = new Client(['headers' => ['ns-token' => 'AAAAUf62Amk']]);
-        $response = $client->request('GET', 'https://ctaxalert.com/api/?caseid=' . $request->get('case_number'));
+        $notificationError = array(
+            'message' => 'We did not find any email associated with this case!', 
+            'alert-type' => 'error'
+        );
 
-        //Get Json 
-        $json = $response->getBody()->getContents();
+        try {
+            $client = new Client(['headers' => ['ns-token' => 'AAAAUf62Amk']]);
+            $response = $client->request('GET', 'https://ctaxalert.com/api/?caseid=' . $request->get('case_number'));
 
-        //Get user data
-        $name    = json_decode($json)->FullName;
-        $email   = json_decode($json)->Email;
-        $result  = Result::find($request->get('result_id'));
-        $message = $request->get('message');
+            $json = $response->getBody()->getContents();
 
-        Mail::to('anhernandez@communitytax.com')->send(new SurveyReminder($name, $result, $message));
+            $name    = json_decode($json)->FullName;
+            $email   = json_decode($json)->Email;
+            $result  = Result::find($request->get('result_id'));
+            $message = $request->get('message');
 
-        return redirect()->route('surveys.show', $request->get('result_id'))->with($notification);
+            Mail::to($email)->send(new SurveyReminder($name, $result, $message));
+
+            $reminder = new Reminder();
+            $reminder->user_id   = $request->get('user_id');
+            $reminder->result_id = $request->get('result_id');
+            $reminder->message   = $request->get('message');
+            $reminder->save();
+
+        } catch (\Exception $ex) {
+            return redirect()->route('surveys.show', $request->get('result_id'))->with($notificationError);
+        }
+
+        return redirect()->route('surveys.show', $request->get('result_id'))->with($notificationOK);
     }
 
     /**
@@ -81,8 +89,16 @@ class ReminderController extends Controller
      * @param  \App\Reminder  $reminder
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reminder $reminder)
+    public function destroy($id)
     {
-        //
+        $reminder = Reminder::findOrFail($id);
+        $reminder->delete();
+
+        $notification = array(
+            'message' => 'The email reminder has been deleted successfully!', 
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('reminders.index')->with($notification);
     }
 }

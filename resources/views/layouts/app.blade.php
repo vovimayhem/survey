@@ -76,20 +76,24 @@
                 <li>
                     <a href="#"><i class="fa fa-gears fa-fw"></i>Administration<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li {{ (Request::is('/admin') ? 'class="active"' : '') }}>
+                        <li {{ (Request::is('/admin/users') ? 'class="active"' : '') }}>
                             <a href="{{ route ('users.index') }}"><i class="fa fa-users fa-fw"></i>Users</a>
                         </li>
 
-                        <li {{ (Request::is('/admin') ? 'class="active"' : '') }}>
+                        <li {{ (Request::is('/admin/roles') ? 'class="active"' : '') }}>
                             <a href="{{ route ('roles.index') }}"><i class="fa fa-gears fa-fw"></i>Roles</a>
                         </li>
 
-                        <li {{ (Request::is('/admin') ? 'class="active"' : '') }}>
+                        <li {{ (Request::is('/admin/notes') ? 'class="active"' : '') }}>
                             <a href="{{ route ('notes.index') }}"><i class="fa fa-edit fa-fw"></i>Notes</a>
                         </li>
 
-                        <li {{ (Request::is('/admin') ? 'class="active"' : '') }}>
+                        <li {{ (Request::is('/admin/notes') ? 'class="active"' : '') }}>
                             <a href="{{ route ('notes.mynotes') }}"><i class="fa fa-edit fa-fw"></i>My Notes</a>
+                        </li>
+
+                        <li {{ (Request::is('/admin/reminders') ? 'class="active"' : '') }}>
+                            <a href="{{ route ('reminders.index') }}"><i class="fa fa-envelope fa-fw"></i>Email Reminders</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
@@ -103,7 +107,7 @@
 </nav>
 
 <div id="page-wrapper">
- <div class="row">
+   <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">@yield('page_heading')</h1>
     </div>
