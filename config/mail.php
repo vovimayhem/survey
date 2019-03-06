@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'intranet@communitytax.com'),
-        'name' => env('MAIL_FROM_NAME', 'Intranet Notification'),
+        'address' => env('MAIL_FROM_ADDRESS', 'survey@communitytax.com'),
+        'name' => env('MAIL_FROM_NAME', 'Survey Notification'),
     ],
 
     /*
