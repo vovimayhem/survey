@@ -2,7 +2,11 @@
 @section('page_heading','Survey Details')
 @section('section')
 <link href="{{ asset('css/zebra_tooltips.min.css') }}" rel="stylesheet" type="text/css">
-
+<link href="{{ asset('css/badge.css') }}" rel="stylesheet" type="text/css">
+<style>
+table { table-layout: fixed; }
+table th, table td { overflow: hidden; word-wrap: break-word; }
+</style>
 <div class="col-lg-8">
 	@section ('pane2_panel_title', 'Most Recent Surveys')
 	@section ('pane2_panel_body')
@@ -33,6 +37,12 @@
 		<div class="text-center">
 			Status: Survey Completed!
 		</div>
+	</div>
+	@endif
+
+	@if( $remainders->count() > 0)
+	<div class="text-right">
+		<a href="" data-toggle="modal" data-target="#showNotificationsModal"> {{ $remainders->count() }} email notifications sent it</a>
 	</div>
 	@endif
 
@@ -125,6 +135,11 @@
 					<p>
 						<a href="https://ctr.logics.com/Cases/Case.aspx?CaseID={{ $result->case_number }}">Open case in Logics</a>
 					</p>
+					@if($result->survey_status != 'Completed')
+					<p>
+						<a href="" data-toggle="modal" data-target="#emailModal">Send Email Notification</a>
+					</p>
+					@endif
 				</div>
 			</div>
 		</div>
@@ -151,11 +166,12 @@
 	<div class="list-group">
 		<a class="btn btn-default btn-block" data-toggle="modal" data-target="#noteModal">Add Note</a>
 		@foreach($notes as $note)
-		<a href="#" class="list-group-item">
+		<a href="javascript: void(0)" class="list-group-item">
 			<i class="fa fa-edit fa-fw"></i> 
-			{{ $note->comment }}
-			<span class="pull-right text-muted small"><em>{{ $note->updated_at->diffForHumans() }}</em>
-			</span>
+			<i class="zebra_tooltips_custom_width_more" title="Posted by {{ $note->user->name }}"> 
+				{{ $note->comment }}
+			</i>
+			<span class="pull-right text-muted small"><em>{{ $note->updated_at->diffForHumans() }}</em></span>
 		</a>
 		@endforeach
 	</div> 
@@ -169,12 +185,12 @@
 	@include('widgets.panel', array('header'=>true, 'as'=>'pane1'))
 </div>
 
-<!-- Modal Dialog -->
+<!-- Create Note Dialog -->
 <div class="modal fade" id="noteModal" tabindex="-1" role="dialog" ara-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
-		<form method="POST" action="{{ url('admin/notes') }}">
-			@csrf
-			<div class="modal-content">
+		<div class="modal-content">
+			<form method="POST" action="{{ url('admin/notes') }}">
+				@csrf
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">New Note</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -195,6 +211,94 @@
 					<button type="submit" class="btn btn-primary">Save Note</button>
 				</div>
 			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Send Email Notification Dialog -->
+<div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<form method="POST" action="{{ url('admin/reminders') }}">
+				@csrf
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">New Email Reminder</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="message-text" class="col-form-label">Message:</label>
+						<textarea class="form-control" id="message-text" name="message" rows="9" cols="50" style="resize: none;"></textarea>
+
+						<input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
+						<input type="hidden" name="result_id" value="{{ $result->id }}" />
+						<input type="hidden" name="case_number" value="{{ $result->case_number }}" />
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Send Email</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- Show notifications sent it -->
+<div class="modal fade" id="showNotificationsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Reminders</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<div class="col-md-12">
+						<div class="table-responsive">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<td>Sent by</td>
+										<td>Custom Message</td>
+										<td>Date</td>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach($remainders as $remainder)
+									<tr>
+										<td><span class="badge badge-light">{{ $remainder->user->name }}</span></td>
+
+										<td>
+											@if(empty($remainder->message))
+											<p>N/A</p>
+											@else
+											<p>
+												<a 
+												href="javascript: void(0)"
+												class="zebra_tooltips_custom_width_more" 
+												title=" {{ $remainder->message }}">Show</a>
+											</p>
+											@endif
+										</td>
+
+										<td><span class="badge badge-light">{{ $remainder->created_at->format('F d, Y') }}</span></td>
+									</tr>
+									@endforeach
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
 		</div>
 	</div>
 </div>

@@ -210,11 +210,12 @@
 
 			<div class="list-group">
 				@foreach($note_items as $note)
-				<a href="#" class="list-group-item">
+				<a href="{{ route('surveys.show', $note->result_id)}}" class="list-group-item">
 					<i class="fa fa-edit fa-fw"></i> 
-					{{ $note->comment }}
-					<span class="pull-right text-muted small"><em>{{ $note->updated_at->diffForHumans() }}</em>
-					</span>
+					<i class="zebra_tooltips_custom_width_more" title="Posted by {{ $note->user->name }}"> 
+						{{ $note->comment }}
+					</i>
+					<span class="pull-right text-muted small"><em>{{ $note->updated_at->diffForHumans() }}</em></span>
 				</a>
 				@endforeach
 			</div>

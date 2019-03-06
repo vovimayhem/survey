@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Note;
+use App\Models\Reminder;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -37,5 +38,9 @@ class User extends Authenticatable
 
     public function notes() {
         return $this->hasMany(Note::class, 'user_id', 'id');
+    }
+
+    public function reminders() {
+        return $this->hasMany(Reminder::class, 'user_id', 'id');
     }
 }

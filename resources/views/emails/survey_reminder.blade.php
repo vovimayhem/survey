@@ -161,7 +161,7 @@
   <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#eeeeee">
     <div class="Gmail" style="height: 1px !important; margin-top: -1px !important; max-width: 600px !important; min-width: 600px !important; width: 600px !important;"></div>
     <div style="display: none; max-height: 0px; overflow: hidden;">
-      Your account has been created!
+      Survey reminder!
     </div>
     <!-- Insert &zwnj;&nbsp; hack after hidden preview text -->
     <div style="display: none; max-height: 0px; overflow: hidden;">
@@ -191,14 +191,16 @@
                             <!-- START BODY COPY -->
                             <tr>
                               <td class="td-padding" align="left" style="font-family: 'Roboto Mono', monospace; color: #212121!important; font-size: 24px; line-height: 30px; padding-top: 18px; padding-left: 18px!important; padding-right: 18px!important; padding-bottom: 0px!important; mso-line-height-rule: exactly; mso-padding-alt: 18px 18px 0px 13px;">
-                                <b> Hello, {{ $user->name }}! </b>
+                                <b> Hello, {{ $name }}! </b>
                               </td>
                             </tr>
                             <tr>
                               <td class="td-padding" align="left" style="font-family: 'Roboto Mono', monospace; color: #212121!important; font-size: 16px; line-height: 24px; padding-top: 18px; padding-left: 18px!important; padding-right: 18px!important; padding-bottom: 0px!important; mso-line-height-rule: exactly; mso-padding-alt: 18px 18px 0px 18px;">
-                                Your account is ready to go! Please use the information below to login to the site. </br>
-                                Username: <b> {{ $user->email }} </b> </br>
-                                Password: <b> {{ $password }} </b> </br>
+                                Recently, you started to fill in our survey, but you did not finish it. Would you please take the time to complete the rest of the survey. <b>By following the button below you will return to the survey where you stopped.</b> </br></br></br>
+                                <p>
+                                  {{ $customMessage }}
+                                </p>
+                                </br></br>
                               </td>
                             </tr>
                             <!-- END BODY COPY -->
@@ -211,7 +213,7 @@
                                       <table border="0" cellspacing="0" cellpadding="0">
                                         <tr>
                                           <td align="left" style="border-radius: 3px;" bgcolor="#234688">
-                                            <a class="button raised" href="{{ $url }}" target="_blank" style="font-size: 14px; line-height: 14px; font-weight: 500; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 3px; padding: 10px 25px; border: 1px solid #234688; display: inline-block;">Go to Survey Admin Portal </a>
+                                            <a class="button raised" href="{{ $url }}" target="_blank" style="font-size: 14px; line-height: 14px; font-weight: 500; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 3px; padding: 10px 25px; border: 1px solid #234688; display: inline-block;">Open Survey</a>
                                           </td>
                                         </tr>
                                       </table>
