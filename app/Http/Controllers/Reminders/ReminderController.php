@@ -72,7 +72,7 @@ class ReminderController extends Controller
             $reminder = new Reminder();
             $reminder->user_id   = $request->get('user_id');
             $reminder->result_id = $request->get('result_id');
-            $reminder->message   = null;
+            $reminder->message   = 'NULL';
             $reminder->save();
 
         } catch (\Exception $ex) {
