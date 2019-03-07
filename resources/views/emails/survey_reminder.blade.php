@@ -199,10 +199,6 @@
                                 Dear Customer, </br></br>
 
                                 We noticed you began our customer feedback survey, however, did not get a chance to complete it. Your feedback is incredibly important to us, and we would greatly appreciate it if you would take one more moment to complete the rest of the survey. Clicking the button below, will take you right where you left off. Thanks again for choosing Community Tax.</br></br></br>
-                                <p>
-                                  {{ $customMessage }}
-                                </p>
-                              </br></br>
                             </td>
                           </tr>
                           <!-- END BODY COPY -->

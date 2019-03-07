@@ -229,9 +229,6 @@ table th, table td { overflow: hidden; word-wrap: break-word; }
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="message-text" class="col-form-label">Message:</label>
-						<textarea class="form-control" id="message-text" name="message" rows="9" cols="50" style="resize: none;"></textarea>
-
 						<input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
 						<input type="hidden" name="result_id" value="{{ $result->id }}" />
 						<input type="hidden" name="case_number" value="{{ $result->case_number }}" />

@@ -44,7 +44,6 @@ class ReminderController extends Controller
         $this->validate($request, [
             'user_id'   => 'required|integer',
             'result_id' => 'required|integer',  
-            'message'   => 'required'
         ]);
 
         $notificationOK = array(
@@ -73,7 +72,7 @@ class ReminderController extends Controller
             $reminder = new Reminder();
             $reminder->user_id   = $request->get('user_id');
             $reminder->result_id = $request->get('result_id');
-            $reminder->message   = $request->get('message');
+            $reminder->message   = null;
             $reminder->save();
 
         } catch (\Exception $ex) {
