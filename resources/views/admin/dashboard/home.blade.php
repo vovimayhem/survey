@@ -110,6 +110,7 @@
 						<tr>
 							<td>Case #</td>
 							<td>Language</td>
+							<td>Notes</td>
 							<td>Feedback</td>
 							<td>Status</td>
 							<td>Created At</td>
@@ -126,6 +127,42 @@
 							@else
 							<td><span class="badge badge-light">English</span></td>
 							@endif
+
+							<td>
+								@if($result->notes->count() === 0)
+								<p>N/A</p>
+								@else
+								<?php
+								$singleValue = null;
+								$hoverNotes = null;
+								$arrNotes = array();
+								$arrResult = array();
+
+								foreach($result->notes()->orderBy('created_at', 'DESC')->get()->take(10) as $note) {
+									$noteArray = ["author" => $note->user->name,"comment" => $note->comment,"date" => $note->created_at];
+									array_push($arrNotes, $noteArray);
+								}
+
+								foreach ($arrNotes as $value) {
+									$singleValue = nl2br("\n" . 'Entered by: ' . 
+										$value['author'] . ' on ' . 
+										$value['date']->format('F d, Y') . "\n" .  
+										$value['comment'] . "\n");
+									array_push($arrResult, $singleValue);
+								}
+
+								foreach($arrResult as $finalValue) {
+									$hoverNotes .= $finalValue;
+								}
+								?>
+								<p>
+									<a 
+									href="javascript: void(0)"
+									class="zebra_tooltips_custom_width_more" 
+									title="{{ $hoverNotes }}"> {{ $result->notes->count() }}</a>
+								</p>
+								@endif
+							</td>
 
 							<td>
 								@if(empty($result->feedback))
@@ -229,7 +266,7 @@
 		<script type="text/javascript">
 			$(document).ready(function() {
 				new $.Zebra_Tooltips($('.zebra_tooltips_custom_width_more'), {
-					max_width: 425
+					max_width: 500
 				});
 			});
 		</script>
