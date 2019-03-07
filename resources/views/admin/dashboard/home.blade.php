@@ -144,10 +144,10 @@
 								}
 
 								foreach ($arrNotes as $value) {
-									$singleValue = nl2br("\n" . 'Entered by: ' . 
+									$singleValue = nl2br('Entered by: ' . 
 										$value['author'] . ' on ' . 
 										$value['date']->format('F d, Y') . "\n" .  
-										$value['comment'] . "\n");
+										$value['comment'] . "\n" . "\n");
 									array_push($arrResult, $singleValue);
 								}
 
