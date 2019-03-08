@@ -45,7 +45,13 @@ Route::prefix('admin')->group(function () {
 	Route::get('result/export', 'Export\ExportController@exportExcel')->name('export');
 
 	//Custom Logout
-	Route::post('logout','Auth\LoginController@logout')->name('user.logout');
+	Route::post('logout','Auth\LoginController@logout')->name('user.logout');\
+
+	//Search 
+	Route::post('search/survey', 'Search\SearchController@searchByCaseNumber')->name('survey.search');
+
+	//Search results
+	Route::get('search/results/{q}', 'Search\SearchController@searchResults')->name('survey.search.results');
 });
 
 Route::get('survey/{lang}/case/{case}', 'Survey\SurveyController@show_survey_view')->name('survey');

@@ -200,6 +200,7 @@
 			@endsection
 			@include('widgets.panel', array('header'=>true, 'as'=>'pane2'))
 		</div>
+
 		<!-- /.col-lg-8 -->
 		<div class="col-lg-4">
 			@section ('panel1_panel_title', 'Survey Status Chart')
@@ -259,15 +260,17 @@
 			@endsection
 			@include('widgets.panel', array('header'=>true, 'as'=>'pane1'))
 		</div>
+	</div>
+</div>
 
-		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/zebra_pin@2.0.0/dist/zebra_pin.min.js"></script>
-		<script src="{{ asset('js/zebra_tooltips.min.js') }}" defer></script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				new $.Zebra_Tooltips($('.zebra_tooltips_custom_width_more'), {
-					max_width: 500
-				});
-			});
-		</script>
-		@stop
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/zebra_pin@2.0.0/dist/zebra_pin.min.js"></script>
+<script src="{{ asset('js/zebra_tooltips.min.js') }}" defer></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		new $.Zebra_Tooltips($('.zebra_tooltips_custom_width_more'), {
+			max_width: 500
+		});
+	});
+</script>
+@stop
