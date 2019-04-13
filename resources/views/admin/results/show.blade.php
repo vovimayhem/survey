@@ -51,7 +51,10 @@ table th, table td { overflow: hidden; word-wrap: break-word; }
 			<hr>
 			<div class="row">
 				<div class="col-md-6">
-					<p>Question 1</p>
+					<p><a href="javascript: void(0)"
+						class="zebra_tooltips_custom_width_more" 
+						title="@lang('survey.question1')">Question 1</a>
+					</p>
 				</div>
 				<div class="col-md-6 text-warning">
 					@if($result->question1 >= 1)
@@ -65,7 +68,10 @@ table th, table td { overflow: hidden; word-wrap: break-word; }
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<p>Question 2</p>
+					<p><a href="javascript: void(0)"
+						class="zebra_tooltips_custom_width_more" 
+						title="@lang('survey.question2')">Question 2</a>
+					</p>
 				</div>
 				<div class="col-md-6 text-warning">
 					@if($result->question2 >= 1)
@@ -79,7 +85,10 @@ table th, table td { overflow: hidden; word-wrap: break-word; }
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<p>Question 3</p>
+					<p><a href="javascript: void(0)"
+						class="zebra_tooltips_custom_width_more" 
+						title="@lang('survey.question3')">Question 3</a>
+					</p>
 				</div>
 				<div class="col-md-6 text-warning">
 					@if($result->question3 >= 1)
@@ -93,7 +102,10 @@ table th, table td { overflow: hidden; word-wrap: break-word; }
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<p>Question 4</p>
+					<p><a href="javascript: void(0)"
+						class="zebra_tooltips_custom_width_more" 
+						title="@lang('survey.question4')">Question 4</a>
+					</p>
 				</div>
 				<div class="col-md-6 text-warning">
 					@if($result->question4 >= 1)
@@ -107,7 +119,10 @@ table th, table td { overflow: hidden; word-wrap: break-word; }
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<p>Question 5</p>
+					<p><a href="javascript: void(0)"
+						class="zebra_tooltips_custom_width_more" 
+						title="@lang('survey.question5')">Question 5</a>
+					</p>
 				</div>
 				<div class="col-md-6 text-warning">
 					@if(empty($result->question5))

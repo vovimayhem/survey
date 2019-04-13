@@ -9,11 +9,37 @@
 			<thead>
 				<tr>
 					<td>Case #</td>
-					<td>Q1</td>
-					<td>Q2</td>
-					<td>Q3</td>
-					<td>Q4</td>
-					<td>Q5</td>
+					
+					<td>
+						<a href="javascript: void(0)"
+						class="zebra_tooltips_custom_width_more" 
+						title="@lang('survey.question1')">Q1</a>
+					</td>
+
+					<td>
+						<a href="javascript: void(0)"
+						class="zebra_tooltips_custom_width_more" 
+						title="@lang('survey.question2')">Q2</a>
+					</td>
+
+					<td>
+						<a href="javascript: void(0)"
+						class="zebra_tooltips_custom_width_more" 
+						title="@lang('survey.question3')">Q3</a>
+					</td>
+
+					<td>
+						<a href="javascript: void(0)"
+						class="zebra_tooltips_custom_width_more" 
+						title="@lang('survey.question4')">Q4</a>
+					</td>
+
+					<td>
+						<a href="javascript: void(0)"
+						class="zebra_tooltips_custom_width_more" 
+						title="@lang('survey.question5')">Q5</a>
+					</td>
+					
 					<td>Language</td>
 					<td>Notes</td>
 					<td>Feedback</td>
