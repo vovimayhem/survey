@@ -68,7 +68,7 @@ class UserController extends Controller
         }
 
         //Send notification to the new user
-        $user->notify(new WelcomeToSurveyAdminPortal($request->get('password')));
+        //$user->notify(new WelcomeToSurveyAdminPortal($request->get('password')));
 
         $notification = array(
             'message' => 'The user has been created successfully!', 
